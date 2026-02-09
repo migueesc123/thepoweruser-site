@@ -1,6 +1,10 @@
 # Cloudflare Pages redirects (generated from Redirects.xlsx)
 # Note: query strings are preserved automatically; URL fragments (#...) are handled client-side.
 
+/redirect-test  /  301
+/redirect-test/ /  301
+
+
 # Redirect Spanish section to homepage
 /es    /    301
 /es/*  /    301
