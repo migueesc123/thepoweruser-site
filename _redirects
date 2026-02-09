@@ -1,5 +1,7 @@
 # Cloudflare Pages redirects (generated from Redirects.xlsx)
 # Note: query strings are preserved automatically; URL fragments (#...) are handled client-side.
+/2018/05/08/first-thoughts-on-power-bi-incremental-refresh    /first-thoughts-on-power-bi-incremental-refresh/    301
+/2018/05/08/first-thoughts-on-power-bi-incremental-refresh/    /first-thoughts-on-power-bi-incremental-refresh/    301
 
 /redirect-test  /  301
 /redirect-test/ /  301
@@ -30,8 +32,6 @@
 /2018/06/11/navigation-window-folder-in-power-query-and-power-bi/    /navigation-window-folder-in-power-query-and-power-bi/    301
 /2018/05/14/new-web-scraping-experience-in-power-bi-power-query-using-css-selectors    /new-web-scraping-experience-in-power-bi-power-query-using-css-selectors/    301
 /2018/05/14/new-web-scraping-experience-in-power-bi-power-query-using-css-selectors/    /new-web-scraping-experience-in-power-bi-power-query-using-css-selectors/    301
-/2018/05/08/first-thoughts-on-power-bi-incremental-refresh    /first-thoughts-on-power-bi-incremental-refresh/    301
-/2018/05/08/first-thoughts-on-power-bi-incremental-refresh/    /first-thoughts-on-power-bi-incremental-refresh/    301
 /2017/01/16/advanced-power-query-and-other-questions-from-m-is-for-data-monkey-readers    /advanced-power-query-and-other-questions-from-m-is-for-data-monkey-readers/    301
 /2017/01/16/advanced-power-query-and-other-questions-from-m-is-for-data-monkey-readers/    /advanced-power-query-and-other-questions-from-m-is-for-data-monkey-readers/    301
 /2013/04/10/understanding-tables-relationships-and-data-modeling-in-powerpivot-2    /understanding-tables-relationships-and-data-modeling-in-powerpivot-2/    301
