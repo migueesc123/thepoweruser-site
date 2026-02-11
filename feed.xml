@@ -3,7 +3,7 @@
     <title>The Power User</title>
     <link href="https://www.thepoweruser.com/feed.xml" rel="self" />
     <link href="https://www.thepoweruser.com" />
-    <updated>2026-02-11T00:47:57-05:00</updated>
+    <updated>2026-02-11T01:05:19-05:00</updated>
     <author>
         <name>Miguel Escobar</name>
     </author>
@@ -499,17 +499,10 @@ try #"Custom Data" otherwise Schema</code> This is the custom function that I've
 <li>Manually do these steps in Power Query by selecting the columns within the query and rename them afterwards</li>
 <li>Use a helper table to make things a bit more flexible in case I need it</li>
 </ol>
-<p>I'm going with option 2. Let's start. You can follow along by downloading the file from the button below:</p>
-<p> </p>
+<p>I'm going with option 2. Let's start.<a class="wp-block-button__link" href="https://drive.google.com/file/d/1uwbS1V_Oht-4W16GXKpIYPeLrW-1dkHb/view?usp=sharing" target="_blank" rel="noreferrer noopener"></a></p>
 </div>
 </div>
 </div>
-<!-- /wp:html -->
-<p> </p>
-<!-- wp:buttons -->
-<div class="wp-block-buttons is-core-buttons-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><!-- wp:button -->
-<div class="wp-block-button is-size-default is-core-button-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a class="wp-block-button__link" href="https://drive.google.com/file/d/1uwbS1V_Oht-4W16GXKpIYPeLrW-1dkHb/view?usp=sharing" target="_blank" rel="noreferrer noopener">DOWNLOAD FILE</a></div>
-<!-- /wp:button --></div>
 <!-- /wp:buttons -->
 <p> </p>
 <!-- wp:heading -->
@@ -728,50 +721,6 @@ try #"Custom Data" otherwise Schema</code> This is the custom function that I've
 <!-- wp:paragraph -->
 <p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">There's a bunch of other functions that work this way and once you start getting the grasp of how tables and lists work in Power Query, you'll be able to make the most out of Power Query.</p>
 <!-- /wp:paragraph -->
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>Step level error in Power BI / Power Query</title>
-        <author>
-            <name>Miguel Escobar</name>
-        </author>
-        <link href="https://www.thepoweruser.com/step-level-error-in-power-bi-power-query/"/>
-        <id>https://www.thepoweruser.com/step-level-error-in-power-bi-power-query/</id>
-        <media:content url="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler1.png" medium="image" />
-
-        <updated>2019-10-28T23:32:47-05:00</updated>
-            <summary type="html">
-                <![CDATA[
-                        <img src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler1.png" alt="" />
-                    In a previous blog post (here) I covered the types of errors&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                    <p><img src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler1.png" class="type:primaryImage" alt="" /></p>
-                <div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">In a previous blog post <a href="https://thepoweruser.com/2018/03/26/query-error-auditing-in-power-query-for-excel-and-power-bi/">(here)</a> I covered the types of errors that you might most likely find when using Power BI / Power Query. In this Conditional Logic series, I've covered the try keyword in Power Query and how to use basically an IFERROR in your own code, but this was mainly done to handle errors at the "row" level. <strong>What if we wanted to handle errors at the step level?</strong> That's where we'll focus in this blog post I do highly recommend that you read <a href="https://thepoweruser.com/2019/06/18/error-handling-iferror-in-power-bi-power-query/">this (url)</a> and the previous blog post in this series before reading further.
-<h2>Why do we get step level errors?</h2>
-<a href="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler2.png"><figure class="alignnone"><img loading="lazy"  src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler2.png" alt="" width="249" height="249" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler2-xs.webp 320w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler2-sm.webp 480w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler2-md.webp 768w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler2-xl.webp 1024w"></figure></a> When we create a query with Power BI / Power Query, we commonly use our own environment, credentials and local system. This means that our query has been tested specifically for us, but this doesn't necessarily mean that it'll work for everyone. See, each "step" that you see in the "Applied Steps" section is basically a variable that is dependent of the previous step. This means that in order to reach the "last step", you first need to trace all of its dependencies and calculate those in order to reach the desired "step". Now, what happens if within any of those dependent steps you find out that there's an error? For example, the step tries to do a transformation on a column "Name", but that column name simply doesn't exist in our query. This will throw a step level error and simply halt (stop completely) the process. Nothing beyond that point will be evaluated and the process will be simply stopped – the only output of the query will be a error message specifying why the error occurred.
-<h2>Can we have our own error messages?</h2>
-This is something that I thought only made sense for Custom Connectors since you can even specify some <a href="https://docs.microsoft.com/en-us/power-query/waitretry">custom handling</a> based on the response header that you get from your REST API, but I recently had a chat with Reid Havens (<a href="https://www.havensconsulting.net/">website</a>) and he's actually testing it with his own Power BI Templates, which is something pretty neat. <strong>In short, yes – we can have our own Error messages</strong>. But…<strong>How do we create our own error messages? </strong> Well, for that we can use a function called <a href="https://docs.microsoft.com/en-us/powerquery-m/error-record"><strong>Error.Record</strong></a><strong> </strong>which will create a record with the necessary field that the error needs. Here's an example of that: <a href="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler3.png"><figure class="alignnone"><img  src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler3.png" alt="" width="880" height="193" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler3-xs.webp 320w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler3-sm.webp 480w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler3-md.webp 768w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler3-xl.webp 1024w"></figure></a> <strong>How do we use it? </strong>Well, the way to use it's pretty simple. All you need to do is simply put the keyword error before it and voilá: <a href="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler4.png"><figure class="alignnone"><img loading="lazy"  src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler4.png" alt="" width="876" height="208" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler4-xs.webp 320w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler4-sm.webp 480w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler4-md.webp 768w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler4-xl.webp 1024w"></figure></a> The reality is that we don't really need the Error.Record function. It just helps us with the creation of the record, but you can manually create it like this: <a href="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler5.png"><figure class="alignnone"><img loading="lazy"  src="https://www.thepoweruser.com/media/posts/548/102819_0743_Stepleveler5.png" alt="" width="869" height="226" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler5-xs.webp 320w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler5-sm.webp 480w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler5-md.webp 768w ,https://www.thepoweruser.com/media/posts/548/responsive/102819_0743_Stepleveler5-xl.webp 1024w"></figure></a>
-<h2>Where do I even use that error? What do I gain out of it?</h2>
-While I would recommend just using the native error messages that come with Power Query, there are some situations where crafting your own Error message would be a good idea. Again, it makes A LOT of sense when you're dealing with a Power BI Custom Connector since you can say that when you receive a 424 error code could be translated into something meaningful and understandable by a human being. This is something that should only be used by advanced users in specific scenarios. You can read the documentation about how to use your own error message from <a href="https://docs.microsoft.com/en-us/power-query/handlingerrors">here</a> and I'll be using it as the reference.
-<h3>The example: Old School File Combination</h3>
-Back in the day (2014-2015), Power Query used to combine "binaries". They've changed that wording to be "files" since the mechanism and set of operations are different. Back then they used a code similar to this:
-<script src="https://gist.github.com/migueesc123/4cb0b053dd75d5fc76da41388a6b20ce.js"></script>
-Translated into our language, this is what you used to do:
-<ol style="margin-left: 38pt;">
-<li>Connect to your source</li>
-<li>Remove all the columns but the one that contains the Binaries</li>
-<li>Navigate to that column of binaries and transform it into a list</li>
-<li>Use the Binary.Combine so you can combine all of your binaries into just one big binary</li>
-<li>Read the newly combined binary using the Csv.Document function</li>
-</ol>
-The main issue with that approach is that it only works with flat files. Not really with more complex files such as xml, Excel, json and others. This meant that if you tried to use this approach, you'd hit an error, but many people didn't understood this error. <strong>What if we were to create a function that would do that binary combination but with a more descriptive error? </strong> It'll look like this:
-<script src="https://gist.github.com/migueesc123/a58ff895a58c69f8141bcd8eef030491.js"></script>
-<h2>A few caveats</h2>
-Once you define your own custom error this way, it'll supersede any other errors that might halt the operation. This means that if any errors occur, this new error will be the one that will be thrown, but you can manage this on a per step level basis, which would be time consuming to create, but you do have the ability to create it. Don't forget that Power Query loves to have some of its values lazily evaluated. This means that they could affect the try operation as those values need to be fully evaluated in order to yield an error or not. You could enforce this evaluation by using any of the Buffer functions (Table.Buffer, List.Buffer, Binary.Buffer) depending on what type of value you're handling. Again, I can't stress this enough, you'd only use this technique if it's strictly necessary and I'd encourage you to think twice before implementing it. Unless it's specifically for a Power BI Custom Connector - in that case it usually has a REALLY good reasoning behind it.</div>
             ]]>
         </content>
     </entry>
@@ -1455,271 +1404,6 @@ Having the correct date and time is EXTREMELY important. <strong>Let me know wha
         </content>
     </entry>
     <entry>
-        <title>Error handling (IFERROR) errors from Excel files in Power BI / Power Query</title>
-        <author>
-            <name>Miguel Escobar</name>
-        </author>
-        <link href="https://www.thepoweruser.com/error-handling-iferror-errors-from-excel-files-in-power-bi-power-query/"/>
-        <id>https://www.thepoweruser.com/error-handling-iferror-errors-from-excel-files-in-power-bi-power-query/</id>
-        <media:content url="https://www.thepoweruser.com/media/posts/517/Row-level-error-handling.png" medium="image" />
-
-        <updated>2019-06-18T05:30:05-05:00</updated>
-            <summary type="html">
-                <![CDATA[
-                        <img src="https://www.thepoweruser.com/media/posts/517/Row-level-error-handling.png" alt="" />
-                    IMPORTANT: You can read the official documentation that Microsoft has on this&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                    <p><img src="https://www.thepoweruser.com/media/posts/517/Row-level-error-handling.png" class="type:primaryImage" alt="" /></p>
-                <!-- wp:paragraph {"textColor":"black","customBackgroundColor":"#77ffb9","marginBottomCustom":0,"paddingTopCustom":25,"paddingBottomCustom":32} -->
-<p class="has-text-color has-background has-black-color is-core-paragraph-block has-space-small-pt has-space-medium-pb" style="background-color: #77ffb9; margin-top: 0px; margin-bottom: 0px; padding-top: 25px; padding-bottom: 32px;"><strong>IMPORTANT: </strong><span class="has-inline-color has-black-color">You can read the official documentation that Microsoft has on this topic from the following<a href="https://docs.microsoft.com/en-us/power-query/error-handling" target="_blank" rel="noreferrer noopener"> <strong>link (url). </strong></a></span></p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">If you haven’t read the first two posts (<a href="https://thepoweruser.com/2019/05/28/conditional-logic-conditional-columns/">Part 1</a> | <a href="https://thepoweruser.com/2019/06/11/logical-operators-and-nested-ifs-in-power-bi-power-query/">Part 2</a>) in this series yet, I welcome you to do so before reading this one.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">I also recommend that you check out <a href="https://thepoweruser.com/2018/03/26/query-error-auditing-in-power-query-for-excel-and-power-bi/" target="_blank" rel="noopener noreferrer"><strong>this post</strong></a> on Query Error Auditing so you get a better understanding of what types of errors you can find in Power BI / Power Query.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">This is a post on how to use error handling, similar to an IFERROR in DAX and Excel, but for Power Query (using its M language).</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading -->
-<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">How does Error handling works in Excel &amp; DAX?</h2>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">In Excel and in DAX we have the IFERROR function which works like this:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:quote -->
-<blockquote class="wp-block-quote is-core-quote-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<p><span style="background-color: #ffff00;">=IFERROR( value, value_if_error)</span></p>
-</blockquote>
-<!-- /wp:quote -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Taken directly from the <a href="https://docs.microsoft.com/en-us/dax/iferror-function-dax" target="_blank" rel="noopener noreferrer">official DAX documentation</a>:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:quote -->
-<blockquote class="wp-block-quote is-core-quote-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<p>Evaluates an expression and returns a specified value if the expression returns an error; otherwise returns the value of the expression itself.</p>
-</blockquote>
-<!-- /wp:quote -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">It’s a pretty simple and straightforward function in DAX and Excel, where you can enter your formula in the <strong>“value”</strong> parameter and then, if you get an error from it, you can define what should be the output value in the <strong>“value_if_error”</strong> parameter.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The whole idea is that you can “catch” an error and use a different value when it finds an error.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading -->
-<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">How does Error handling works in Power BI / Power Query?</h2>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">In Power Query the code is a bit different. Let’s see it in action and then talk more about it.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Imagine that we have an Excel workbook with a table like this</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-27.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-27.png" alt="image" width="212" height="288" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-27-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-27-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-27-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-27-xl.webp 1024w"></a>:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">What we would like to create is a new column that should multiply the values from the [Price] and [Amount] columns to create a new Subtotal column.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">One caveat, as you can probably see, is that this spreadsheet has some cells with errors on the [Price] column. In the event that we find an error on the Price column, we need to use the value from the [List Price] instead of the [Price] value.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The first thing that we need to do is import that table from Excel. If you’d like to follow along, you can download the workbook by clicking the button below:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:buttons -->
-<div class="wp-block-buttons is-core-buttons-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><!-- wp:button -->
-<div class="wp-block-button is-size-default is-core-button-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a class="wp-block-button__link" href="https://thepoweruser.com/wp-content/uploads/2019/05/Errors.xlsx" target="_blank" rel="noreferrer noopener">download files</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons -->
-<p> </p>
-<!-- wp:heading {"level":3} -->
-<h3 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Importing data from the Excel Workbook</h3>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">I’ll be using Power BI Desktop for this, but you can use Excel as well.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The first thing that we need to do is select the Excel connector and connect to our file:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-28.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-28.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-28-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-28-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-28-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-28-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">and once you get the “Navigator” window, you can select the table that reads “Sample”:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-29.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-29.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-29-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-29-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-29-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-29-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Notice how there’s a bunch of errors in that [Price] column just in the preview. Let’s hit the “Edit” button so we can go to the <strong>Power Query Editor Window.</strong></p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading {"level":3} -->
-<h3 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Using error handling in Power BI /Power Query</h3>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Now that we have our data in the Power Query Editor window:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-30.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-30.png" alt="image" width="1017" height="576" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-30-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-30-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-30-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-30-xl.webp 1024w"></a> what we want to do is create a Custom Column, so we simply go to the “Add Column” menu and hit on “Custom Column”.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">In there, we try do create a simple column that will multiply the [Price] column by the [Amount] column:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-31.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-31.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-31-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-31-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-31-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-31-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">and as you can see, our [Subtotal] column has some errors.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">We know that in Excel and DAX you can use IFERROR, but <strong>what can you use in Power Query ?</strong></p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">For Power Query, we need to hit modify that Custom Column code (just click the gear icon next to the Added Custom step) and add the following pieces to it:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-32.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-32.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-32-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-32-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-32-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-32-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:quote -->
-<blockquote class="wp-block-quote is-core-quote-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<p><span style="background-color: #ffff00;">try [Price]*[Amount] otherwise [Amount]*[List Price]</span></p>
-</blockquote>
-<!-- /wp:quote -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">We need to use the keywords “try” and “otherwise”. It’s pretty easy to read, but it just says to try and evaluate the expression ([Price] * [Amount]) and if that gives an error, use the expression defined after the otherwise statement.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The result of that will look like this:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-33.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-33.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-33-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-33-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-33-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-33-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">pretty simple! almost as simple as the IFERROR function in DAX and Excel where intellisense does explain you a bit how to use that function, but in Power Query you need to understand how this works in order to use it. Is nowhere in the User Interface of Power Query, so you need to write this code manually.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading -->
-<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Understanding Errors</h2>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The workbook sample that I’m using is fairly simple. I’ve had experiences where some users / customers absolutely need to know when a specific error is found from an Excel Workbook.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">What happens with Power Query is that it just flags any errors found as “Error” but, <strong>what if you needed to know WHY it shows as an error?</strong></p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Let’s go back to our initial load of the file. Remember that in most cases Power Query will automatically try to add a “Changed Type” step, <strong>so what if we remove that step?</strong></p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-34.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-34.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-34-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-34-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-34-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-34-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Well, I removed the step and I’m still seeing the errors and that’s because the error wasn’t triggered by a data type conversion, but rather it’s a source error, meaning that the error comes directly from the Excel Workbook.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">In Workbook with vast amounts of rows, it’s hard to tell if there are any errors at all and doing a “Replace Errors” will not tell us why those errors occurred. We NEED to know what is the error from the source because we want to handle each type of error differently.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading {"level":3} -->
-<h3 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Error Message and Error Reason</h3>
-<!-- /wp:heading -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">To figure out what’s the reason why there’s an error, we need to use the “try” statement again.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-35.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-35.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-35-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-35-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-35-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-35-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Note how I only use “try” and not the “otherwise” statement. This will give me a new column with record values. We can expand those records like this:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-36.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-36.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-36-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-36-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-36-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-36-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">the most important field from those records it’s the “Error” field which can be either a null or a record value:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-37.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-37.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-37-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-37-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-37-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-37-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">and after expanding that column and deleting some others that we don’t need, I end up with this:</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:image {"linkDestination":"custom"} -->
-<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-38.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/517/image_thumb-38.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-38-xs.webp 320w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-38-sm.webp 480w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-38-md.webp 768w ,https://www.thepoweruser.com/media/posts/517/responsive/image_thumb-38-xl.webp 1024w"></a></figure>
-<!-- /wp:image -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">I’ve highlighted the most important field after this whole process which is the “Message” which tells me exactly the reason why this is an error.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:paragraph -->
-<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">I can later use this to my advantage and target specific errors differently or get a report of ALL the errors found on a series of files that my department / group uses. This is extremely helpful if you’re trying to validate everything and make sure that we don’t have any errors at the source.</p>
-<!-- /wp:paragraph -->
-<p> </p>
-<!-- wp:heading {"level":5} -->
-<h5 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Don’t forget that these same principles work for both Step and cell Value level errors.</h5>
-<!-- /wp:heading -->
-            ]]>
-        </content>
-    </entry>
-    <entry>
         <title>Logical Operators and Nested IFs in Power BI / Power Query</title>
         <author>
             <name>Miguel Escobar</name>
@@ -1779,6 +1463,177 @@ Imagine that we have this table: <a href="https://thepoweruser.com/wp-content/up
 The result of that is: <a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-25.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/516/image_thumb-25.png" alt="image" width="720" height="122" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/516/responsive/image_thumb-25-xs.webp 320w ,https://www.thepoweruser.com/media/posts/516/responsive/image_thumb-25-sm.webp 480w ,https://www.thepoweruser.com/media/posts/516/responsive/image_thumb-25-md.webp 768w ,https://www.thepoweruser.com/media/posts/516/responsive/image_thumb-25-xl.webp 1024w"></a> Pretty simple, yet super powerful to understand how to use these logical operators. You can combine them however you want and in the way that is more practical or makes more sense to you.
 <h5>Be sure to check the next post in this series where I’ll cover error handling or the pseudo IFERROR function in Power Query</h5>
 </div>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Conditional Logic: IF statement for Conditional Columns</title>
+        <author>
+            <name>Miguel Escobar</name>
+        </author>
+        <link href="https://www.thepoweruser.com/conditional-logic-if-statement-for-conditional-columns/"/>
+        <id>https://www.thepoweruser.com/conditional-logic-if-statement-for-conditional-columns/</id>
+        <media:content url="https://www.thepoweruser.com/media/posts/515/image-2.png" medium="image" />
+
+        <updated>2019-05-28T01:15:00-05:00</updated>
+            <summary type="html">
+                <![CDATA[
+                        <img src="https://www.thepoweruser.com/media/posts/515/image-2.png" alt="" />
+                    <!-- wp:paragraph {"textColor":"black","customBackgroundColor":"#77ffb9","marginBottomCustom":0,"paddingTopCustom":25,"paddingBottomCustom":32} -->
+<p class="has-text-color has-background has-black-color is-core-paragraph-block has-space-small-pt has-space-medium-pb" style="background-color: #77ffb9; margin-top: 0px; margin-bottom: 0px; padding-top: 25px; padding-bottom: 32px;"><strong>IMPORTANT: <span class="has-inline-color has-black-color">You can read the official documentation that Microsoft has on this topic from the following<a href="https://docs.microsoft.com/en-us/power-query/add-conditional-column" target="_blank" rel="noreferrer noopener"> link (url).</a></span></strong></p>
+<!-- /wp:paragraph -->
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<p>If you come from Excel, you've probably seen or heard about the IF statements and its new sister the IFERROR.</p>
+<p>I remember the first time that I saw a conditional chain like the picture below:</p>
+<p><img loading="lazy" style="border: 0px currentcolor; background-image: none;" src="https://www.thepoweruser.com/media/posts/515/800px-IF-THEN-ELSE-END_flowchart.svg.png" width="281" height="354" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xl.webp 1024w"></p>
+<p>It looked WAY better as a diagram than as an Excel formula, nevertheless – it worked just fine inside of Excel.</p>
+<p>The question is….<strong>how do Conditionals work in Power BI / Power Query? do we have an IF function? maybe an IFERROR? </strong>THIS is the blog post where I’ll cover this topic.</p>
+
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                    <p><img src="https://www.thepoweruser.com/media/posts/515/image-2.png" class="type:primaryImage" alt="" /></p>
+                <!-- wp:paragraph {"textColor":"black","customBackgroundColor":"#77ffb9","marginBottomCustom":0,"paddingTopCustom":25,"paddingBottomCustom":32} -->
+<p class="has-text-color has-background has-black-color is-core-paragraph-block has-space-small-pt has-space-medium-pb" style="background-color: #77ffb9; margin-top: 0px; margin-bottom: 0px; padding-top: 25px; padding-bottom: 32px;"><strong>IMPORTANT: <span class="has-inline-color has-black-color">You can read the official documentation that Microsoft has on this topic from the following<a href="https://docs.microsoft.com/en-us/power-query/add-conditional-column" target="_blank" rel="noreferrer noopener"> link (url).</a></span></strong></p>
+<!-- /wp:paragraph -->
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<p>If you come from Excel, you've probably seen or heard about the IF statements and its new sister the IFERROR.</p>
+<p>I remember the first time that I saw a conditional chain like the picture below:</p>
+<p><img loading="lazy" style="border: 0px currentcolor; background-image: none;" src="https://www.thepoweruser.com/media/posts/515/800px-IF-THEN-ELSE-END_flowchart.svg.png" width="281" height="354" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xl.webp 1024w"></p>
+<p>It looked WAY better as a diagram than as an Excel formula, nevertheless – it worked just fine inside of Excel.</p>
+<p>The question is….<strong>how do Conditionals work in Power BI / Power Query? do we have an IF function? maybe an IFERROR? </strong>THIS is the blog post where I’ll cover this topic.</p>
+
+<h2>What type of Conditional Logics do we have in Power BI / Power Query?</h2>
+<p>In essence, we have 2 types of M language expressions (also known as “keywords”):</p>
+<ul>
+<li><strong>if expression -</strong>  essentially the same behavior as the <strong>IF </strong>function that we have in Excel</li>
+<li><strong>error handler -</strong>  ALMOST the same as the IFERROR from Excel, but even better.</li>
+</ul>
+<p>In this post I’ll cover the <strong>if expression</strong>, how it works and how to use it and in the next post in this series I’ll cover the error handler or IFERROR in Power BI / Power Query.</p>
+<h2>IF Statement in Power BI / Power Query</h2>
+<p><strong>The case: </strong>Imagine a simple table like this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-3.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-3.png" alt="image" width="692" height="109" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-xl.webp 1024w"></a></p>
+<p>what we would like to do is create a new column that should have the total tax of the transaction. Some lines are taxable and some others are not, so the condition is this:</p>
+<ul>
+<li><strong>if the column [Taxable?] is equals to “Yes” then multiply the value from the [Tax] by the value from the [Amount] column</strong></li>
+</ul>
+<p>Remember that Power BI / Power Query is a user-oriented tool, so it has this really nice and unique User-interface that provides a rich User-eXperience.</p>
+<p>If you don’t want to learn any code, you can use the UI to accomplish almost 80% of what you want to do when it comes to Data Preparation inside of Power Query.</p>
+<p>We’ll use UI oriented method first.</p>
+<h3>Creating a Conditional Column using the Power BI / Power Query user interface</h3>
+<p>if you go to the “Add Column” menu, you’ll see the “Conditional Column” button:<a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-4.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-4.png" alt="image" width="769" height="297" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-xl.webp 1024w"></a></p>
+<p>When you click it, you’ll get a new window called the “Add Conditional Column” window and it looks like this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-5.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-5.png" alt="image" width="924" height="389" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-xl.webp 1024w"></a></p>
+<p>It’s pretty cool! but let me tell you how it works.</p>
+<p>On the top left you’ll see a “New Column name” and this is where you’ll input the name of the new column.</p>
+<p>Then we see a row that starts with “if” and that’s where I’ve entered the conditional logic, but there’s once piece missing and that’s the output!</p>
+<p>We’re only able to enter either a static value or select a column. We don’t have an option to enter a formula here, so we can’t move forward with this. What we need to do first is create that column and refer to that column once it’s in our table.</p>
+<p>Let’s just go ahead and close this window for now and go back to the Power Query Window.</p>
+<p>We can select both columns and then do a simple multiplication by going through the “Add Column” menu:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-6.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-6.png" alt="image" width="711" height="289" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-xl.webp 1024w"></a></p>
+<p>but there’s still one more thing that we need to do and that is round that value. So with the output of the previous operation, we select that column and then go to the “Transform” menu and do a Round from there:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-7.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-7.png" alt="image" width="1473" height="624" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-xl.webp 1024w"></a></p>
+<p>and with that value now in the table, we can go back to the Conditional Column and just enter it like this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-8.png"><img loading="lazy" style="display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-8.png" alt="image" width="926" height="391" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-xl.webp 1024w"></a></p>
+<p>After this, we can simply remove the “Multiplication” Column and that’ll give us the following result:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-9.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-9.png" alt="image" width="891" height="95" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-xl.webp 1024w"></a></p>
+<p>which is exactly what we’re after.</p>
+<p>One of the caveats of this whole process is that it relies on a lot of layers or steps because we’re not able to input the formula right from the “Add Conditional Column” window.</p>
+<p>What if we could do all of these 4 steps:</p>
+<ol>
+<li>Multiply the columns</li>
+<li>Round the value from that column “Multiplication” column</li>
+<li>Create a Conditional Column</li>
+<li>Remove the “Multiplication” column as its no longer needed</li>
+</ol>
+<p>in just 1 step instead…<strong>could it be possible? </strong>It sure is! Let’s find out how</p>
+<h3>Creating a Conditional Column using the Power BI / Power Query Custom Column window</h3>
+<p>This method does require you to know M code, but it could save you A LOT of time and will help you minimize your code so it’s not “bloated” and so difficult to read and understand after you’re done with it.</p>
+<p>Instead of going with the “Conditional Column” from the “Add Column” menu, we’ll go with the “Custom Column":</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-10.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-10.png" alt="image" width="389" height="174" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-xl.webp 1024w"></a></p>
+<p>and now, thanks to all the updates that Power Query has been getting, it’s easier to input the formula that we need directly into the Custom Column window. Just look at this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-11.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-11.png" alt="image" width="701" height="438" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-xl.webp 1024w"></a></p>
+<p>The formula above does the multiplication and the rounding but, <strong>what about the if statement?</strong></p>
+<p>In Power Query everything is case sensitive. In this case, the if statement should look exactly like this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-12.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-12.png" alt="image" width="642" height="401" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-xl.webp 1024w"></a></p>
+<blockquote>
+<p><span style="background-color: #ffff00;">if [#"Taxable?"] = "Yes" then<br>Number.Round( [Tax] * [Amount], 2)<br>else 0</span></p>
+</blockquote>
+<p>Notice how all parts of the <strong>if statement </strong>are colored in blue. In order to make a nested IF, we would use the <strong>if </strong>again after the <strong>else</strong> – again, everything is case sensitive so keep that in mind.</p>
+<p>The end result will look like this:</p>
+<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-13.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-13.png" alt="image" width="1024" height="226" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-xl.webp 1024w"></a></p>
+<p>where everything was done in just 1 step.</p>
+<p>Be sure to check out the next parts in the series where I’ll go over:</p>
+<ul>
+<li>Logical Operators and nested conditionals</li>
+<li>IFERROR in Power Query</li>
+</ul>
+</div>
+</div>
+</div>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Data Source and Step Level Settings in Power BI / Power Query: aka The Gear Icons</title>
+        <author>
+            <name>Miguel Escobar</name>
+        </author>
+        <link href="https://www.thepoweruser.com/data-source-and-step-level-settings-in-power-bi-power-query-aka-the-gear-icons/"/>
+        <id>https://www.thepoweruser.com/data-source-and-step-level-settings-in-power-bi-power-query-aka-the-gear-icons/</id>
+        <media:content url="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" medium="image" />
+
+        <updated>2019-05-21T05:30:00-05:00</updated>
+            <summary type="html">
+                <![CDATA[
+                        <img src="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" alt="" />
+                    Over a year ago I wrote a blog post in this specific&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                    <p><img src="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" class="type:primaryImage" alt="" /></p>
+                <div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">Over a year ago I wrote a blog post in this specific topic. I highly recommend that you read it (<a href="https://thepoweruser.com/2018/04/16/reconfiguring-a-step-in-power-query-for-excel-and-power-bi/" target="_blank" rel="noopener noreferrer">here</a>) before you read this one. The reason why I’m writing kind of a follow up on this it’s because I recently had a really heated conversation with a very close friend of mine who I can only call as an expert on Power Query. It was a pretty heated conversation because this person was on the “<strong>dark side</strong>”, as he didn’t know of what the Data Source Settings button actually did and was using dark [M]agic to make things work. <img loading="lazy" style="border: 0px currentcolor; margin-right: auto; margin-left: auto; float: none; display: block; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-20.png" alt="image" width="162" height="188" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-xl.webp 1024w"> <strong>This was pretty crazy to me! </strong>I use this button / feature almost on a daily basis and I can’t stop recommending it to people who use Power BI / Power Query, so why would this person choose any other method over this? Let me show you WHY this is such a big deal and why you need to start using the gear icons more frequently.
+<h2>The situation with changing Folder Paths for the Combine Files Experience</h2>
+I recently wrote a whole 4 part series on how you can combine files and in several of those blog posts I explained how you can use the Combine Files experience to append / consolidate / combine the data within your files into just one big table. [custom_posts template="one_half_gallery" effect="none" hide="date,author,comments_link,summary,categories,tags" entry_ids="17711,17777"] Now, let’s say that you created a connection to a folder located in:
+<p align="center"><em>“D:\Sales”</em></p>
+but now you want to change the folder path to be:
+<p align="center"><em>“D:\Sales\Americas”</em></p>
+so you can only combine the data of the files within the Americas subfolder. <strong>How do you do that with Power BI / Power Query? </strong>In Power BI / Power Query, this is categorized as changing a Data Source. What we’re trying to change is a Data Source (a folder path in this case) which has an authentication method attached to it. For a local folder path, this authentication is completely implicit so you won’t get the “Authentication” window, but if you were connecting to a SharePoint / OneDrive Folder then you’d get that authentication window. Let’s look at the options that we have in order to change this data source.
+<h2>Option 1: Using the Source Step gear icon (The Dark Side)</h2>
+When you create a query to a new data source, you’ll notice that the first step will be called “Source” and it’ll have a gear icon right next to it. When you click that gear icon, you’ll get the same prompt window that you got when you initially tried to connect to your data source which in our case it’ll be the “Folder” window to browse to a new folder path: <img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-21.png" alt="image" width="1340" height="430" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-xl.webp 1024w"> <strong>What’s the problem with this approach?  </strong>That’s a good question! it seems like a fine approach, until you realize that you’ll need to do this for every single query that has that same data source which is just tedious, time consuming and sometimes we forget where all of our data sources are being defined (at a step level). For example, with the Combine Files experience, the folder path gets referenced in 2 places:
+<ol>
+<li><strong>The original query:</strong></li>
+</ol>
+<img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-22.png" alt="image" width="1211" height="615" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-xl.webp 1024w">
+<ol>
+<li><strong>The sample file query:</strong></li>
+</ol>
+<img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-23.png" alt="image" width="1211" height="615" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-xl.webp 1024w"> The situation here is that in some cases the consequent steps of some of those queries also rely on the names of the “Data Source” so it can get complicated when you want to change your data source as all of this will need to be done manually. <strong>There are some workarounds to make this work with a step level configuration, but they fall on what I call a MacGyver approach.</strong>
+<h2>Option 2: Using the Data Source Settings (The Right Side)</h2>
+This is the option that I usually recommend and here’s the logic behind it. I’m a pretty visual type of guy, and that’s the main reason why you see so many diagrams and illustrations created by myself on this blog, so let’s take a visual approach here. If you go to Power BI / Power Query, get to the “View” menu and select the “Query Dependencies” you’ll get a window like the following: <img loading="lazy" style="display: inline; background-image: none;" title="SNAGHTML2314279d" src="https://www.thepoweruser.com/media/posts/513/SNAGHTML2314279d_thumb.png" alt="SNAGHTML2314279d" width="1117" height="878" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-xl.webp 1024w">
+<ol>
+<li>Go to  the View tab</li>
+<li>Click on the Query Dependencies button</li>
+<li>Check the visual representation of all of your queries</li>
+</ol>
+As you can see, you get a visual representation of all of your queries and there’s only 1 data source which is denoted with a folder icon (D:\Sales). See, this is like a master record for that specific data source so you don’t need to go through each query that references that data source, but instead you go to a different button. <strong>What button? you might ask</strong> <strong>Here’s the full process that you need to take in order to change your data source:</strong> <img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-24.png" alt="image" width="1553" height="897" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-xl.webp 1024w">
+<ol>
+<li>Go to Home tab</li>
+<li>Select the Data Source Settings button</li>
+<li>A new window for the Data Source settings should appear</li>
+<li>Select your data source from the list. In my case it was the “D:\Sales” folder</li>
+<li>Click the “Change Source…” button at the very bottom left side of the window</li>
+<li>A new window will appear where you can change your data source for ALL of your queries</li>
+</ol>
+and that’s it! even if you had dozens of queries that reference that same data source, you wouldn’t have to go through each and every one of them to make the changes with this option
+<h2>Conclusions</h2>
+While both approaches are very much valid, when it comes to changing a data source I highly recommend that you go through the Option #2 with the Data Source Settings button. The other gear icons, at the step level, do have their own place and that’s what I mainly talk in my previous blog post about the Step configuration. Be sure to check out that blog post <a href="https://thepoweruser.com/2018/04/16/reconfiguring-a-step-in-power-query-for-excel-and-power-bi/" target="_blank" rel="noopener noreferrer"><strong>here</strong></a>.</div>
             ]]>
         </content>
     </entry>
