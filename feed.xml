@@ -1467,173 +1467,327 @@ The result of that is: <a href="https://thepoweruser.com/wp-content/uploads/2019
         </content>
     </entry>
     <entry>
-        <title>Conditional Logic: IF statement for Conditional Columns</title>
+        <title>Parameter Tables in Power BI / Power Query</title>
         <author>
             <name>Miguel Escobar</name>
         </author>
-        <link href="https://www.thepoweruser.com/conditional-logic-if-statement-for-conditional-columns/"/>
-        <id>https://www.thepoweruser.com/conditional-logic-if-statement-for-conditional-columns/</id>
-        <media:content url="https://www.thepoweruser.com/media/posts/515/image-2.png" medium="image" />
+        <link href="https://www.thepoweruser.com/parameter-tables-in-power-bi-power-query/"/>
+        <id>https://www.thepoweruser.com/parameter-tables-in-power-bi-power-query/</id>
+        <media:content url="https://www.thepoweruser.com/media/posts/484/image-51.png" medium="image" />
 
-        <updated>2019-05-28T01:15:00-05:00</updated>
+        <updated>2019-03-05T07:45:00-05:00</updated>
             <summary type="html">
                 <![CDATA[
-                        <img src="https://www.thepoweruser.com/media/posts/515/image-2.png" alt="" />
-                    <!-- wp:paragraph {"textColor":"black","customBackgroundColor":"#77ffb9","marginBottomCustom":0,"paddingTopCustom":25,"paddingBottomCustom":32} -->
-<p class="has-text-color has-background has-black-color is-core-paragraph-block has-space-small-pt has-space-medium-pb" style="background-color: #77ffb9; margin-top: 0px; margin-bottom: 0px; padding-top: 25px; padding-bottom: 32px;"><strong>IMPORTANT: <span class="has-inline-color has-black-color">You can read the official documentation that Microsoft has on this topic from the following<a href="https://docs.microsoft.com/en-us/power-query/add-conditional-column" target="_blank" rel="noreferrer noopener"> link (url).</a></span></strong></p>
-<!-- /wp:paragraph -->
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<p>If you come from Excel, you've probably seen or heard about the IF statements and its new sister the IFERROR.</p>
-<p>I remember the first time that I saw a conditional chain like the picture below:</p>
-<p><img loading="lazy" style="border: 0px currentcolor; background-image: none;" src="https://www.thepoweruser.com/media/posts/515/800px-IF-THEN-ELSE-END_flowchart.svg.png" width="281" height="354" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xl.webp 1024w"></p>
-<p>It looked WAY better as a diagram than as an Excel formula, nevertheless – it worked just fine inside of Excel.</p>
-<p>The question is….<strong>how do Conditionals work in Power BI / Power Query? do we have an IF function? maybe an IFERROR? </strong>THIS is the blog post where I’ll cover this topic.</p>
-
+                        <img src="https://www.thepoweruser.com/media/posts/484/image-51.png" alt="" />
+                    <div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">One of the most interesting and most unique scenarios is Parameter Tables in Power Query / Power BI. The way to make a dynamic Power Query solution is to make sure that it can be easily customizable and, at the same time, be able to work as more of a pattern rather than just a unique one off solution to a single file, table or whatever it is that your query works against. This is exactly where Parameters and Parameter Tables jump in. We’ve seen before how you can create Parameters using the Manage Parameters feature, but what if you want to have your own parameters coming from a Table from any other source? <a href="https://thepoweruser.com/wp-content/uploads/2019/01/image-52.png"><img loading="lazy" style="display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/484/image_thumb-52.png" alt="image" width="263" height="77" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-xl.webp 1024w"></a> The purpose of having Parameters this way is that it’s dynamic, on every refresh it’ll get the latest values, and it gives another end-user interaction layer, where people can input or change values of parameters completely outside of Power Query / Power BI perhaps on an Excel table, or perhaps on its own storage like a SQL Server database. In the end, it’s all about providing the user with the friendliest of experiences based on their specific requirements. In this blog post we’ll cover what Parameter Tables are in Power Query / Power BI and the types of Parameter Tables that you can use.
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                    <p><img src="https://www.thepoweruser.com/media/posts/515/image-2.png" class="type:primaryImage" alt="" /></p>
-                <!-- wp:paragraph {"textColor":"black","customBackgroundColor":"#77ffb9","marginBottomCustom":0,"paddingTopCustom":25,"paddingBottomCustom":32} -->
-<p class="has-text-color has-background has-black-color is-core-paragraph-block has-space-small-pt has-space-medium-pb" style="background-color: #77ffb9; margin-top: 0px; margin-bottom: 0px; padding-top: 25px; padding-bottom: 32px;"><strong>IMPORTANT: <span class="has-inline-color has-black-color">You can read the official documentation that Microsoft has on this topic from the following<a href="https://docs.microsoft.com/en-us/power-query/add-conditional-column" target="_blank" rel="noreferrer noopener"> link (url).</a></span></strong></p>
-<!-- /wp:paragraph -->
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-<p>If you come from Excel, you've probably seen or heard about the IF statements and its new sister the IFERROR.</p>
-<p>I remember the first time that I saw a conditional chain like the picture below:</p>
-<p><img loading="lazy" style="border: 0px currentcolor; background-image: none;" src="https://www.thepoweruser.com/media/posts/515/800px-IF-THEN-ELSE-END_flowchart.svg.png" width="281" height="354" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/800px-IF-THEN-ELSE-END_flowchart.svg-xl.webp 1024w"></p>
-<p>It looked WAY better as a diagram than as an Excel formula, nevertheless – it worked just fine inside of Excel.</p>
-<p>The question is….<strong>how do Conditionals work in Power BI / Power Query? do we have an IF function? maybe an IFERROR? </strong>THIS is the blog post where I’ll cover this topic.</p>
-
-<h2>What type of Conditional Logics do we have in Power BI / Power Query?</h2>
-<p>In essence, we have 2 types of M language expressions (also known as “keywords”):</p>
+                    <p><img src="https://www.thepoweruser.com/media/posts/484/image-51.png" class="type:primaryImage" alt="" /></p>
+                <div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">One of the most interesting and most unique scenarios is Parameter Tables in Power Query / Power BI. The way to make a dynamic Power Query solution is to make sure that it can be easily customizable and, at the same time, be able to work as more of a pattern rather than just a unique one off solution to a single file, table or whatever it is that your query works against. This is exactly where Parameters and Parameter Tables jump in. We’ve seen before how you can create Parameters using the Manage Parameters feature, but what if you want to have your own parameters coming from a Table from any other source? <a href="https://thepoweruser.com/wp-content/uploads/2019/01/image-52.png"><img loading="lazy" style="display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/484/image_thumb-52.png" alt="image" width="263" height="77" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-52-xl.webp 1024w"></a> The purpose of having Parameters this way is that it’s dynamic, on every refresh it’ll get the latest values, and it gives another end-user interaction layer, where people can input or change values of parameters completely outside of Power Query / Power BI perhaps on an Excel table, or perhaps on its own storage like a SQL Server database. In the end, it’s all about providing the user with the friendliest of experiences based on their specific requirements. In this blog post we’ll cover what Parameter Tables are in Power Query / Power BI and the types of Parameter Tables that you can use.
+<h2>The Original Recipe: by Ken Puls</h2>
+A few years ago, before the ‘Manage Parameters’ was even invented / created by the Power Query / Power BI team, there was only a way to create a pseudo Parameter actually coming from an Excel Table.<a href="https://thepoweruser.com/wp-content/uploads/2019/01/Ken-Puls.png"><img loading="lazy" style="border: 0px currentcolor; margin-right: auto; margin-left: auto; float: none; display: block; background-image: none;" title="Ken Puls" src="https://www.thepoweruser.com/media/posts/484/Ken-Puls_thumb.png" alt="Ken Puls" width="211" height="318" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/Ken-Puls_thumb-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/Ken-Puls_thumb-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/Ken-Puls_thumb-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/Ken-Puls_thumb-xl.webp 1024w"></a>
+<p align="left">The first person to ever write about it was my friend and legend Ken Puls and you can read his blog post about it <a href="https://www.excelguru.ca/blog/2014/11/26/building-a-parameter-table-for-power-query/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<p align="left">Ken Puls wrote that post in 2014 as it’s still relevant to this day. It’s such a profound an impactful contribution to the Power Query ‘game’ that we ended up adding this to the ‘M is for Data Monkey’ book that we co-authored.</p>
+<p align="left">See, Ken is what you can call a Legend. He’s been an Excel MVP for many many years, even before I turned 18 years old and this guy has some wisdom on many areas from Excel, VBA, DAX, BI and more skills (check his Legend Card above).</p>
+From his wisdom, he was able to come up with an Excel formula that has completely changed the game for anyone using Power Query inside of Excel which is: <strong>=LEFT(CELL("filename",B6),FIND("[",CELL("filename",B6),1)-1)</strong> and that Excel formula will give you the current file path of your file which you can later use to create references to where exactly other files might be from your solution. Again, just go ahead and read the full <a href="https://www.excelguru.ca/blog/2014/11/26/building-a-parameter-table-for-power-query/" target="_blank" rel="noopener noreferrer"><strong>blog post</strong></a> from Ken about it – it’s a really good read. In his blog post he talks about a specific way to create a Parameter table. <strong>In this blog post we’ll take a deep dive into how you can create Parameter tables and take your Parameter skills to a whole new level.</strong>
+<h2>Possible Layouts for a parameter table</h2>
+The first topic that we need to tackle is, <strong>how does a Parameter table look like?</strong> They have 2 distinct layouts: <a href="https://thepoweruser.com/wp-content/uploads/2019/01/image-53.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/484/image_thumb-53.png" alt="image" width="575" height="132" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-53-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-53-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-53-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-53-xl.webp 1024w"></a>
 <ul>
-<li><strong>if expression -</strong>  essentially the same behavior as the <strong>IF </strong>function that we have in Excel</li>
-<li><strong>error handler -</strong>  ALMOST the same as the IFERROR from Excel, but even better.</li>
+<li><strong>Record-like Table –</strong> this is the one that Ken used in his example and here’s a quick example of one:</li>
 </ul>
-<p>In this post I’ll cover the <strong>if expression</strong>, how it works and how to use it and in the next post in this series I’ll cover the error handler or IFERROR in Power BI / Power Query.</p>
-<h2>IF Statement in Power BI / Power Query</h2>
-<p><strong>The case: </strong>Imagine a simple table like this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-3.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-3.png" alt="image" width="692" height="109" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-3-xl.webp 1024w"></a></p>
-<p>what we would like to do is create a new column that should have the total tax of the transaction. Some lines are taxable and some others are not, so the condition is this:</p>
+<a href="https://thepoweruser.com/wp-content/uploads/2019/01/image-54.png"><img loading="lazy" style="margin: 0px; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/484/image_thumb-54.png" alt="image" width="263" height="73" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-54-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-54-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-54-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-54-xl.webp 1024w"></a>
 <ul>
-<li><strong>if the column [Taxable?] is equals to “Yes” then multiply the value from the [Tax] by the value from the [Amount] column</strong></li>
+<li><strong>Parameters as Table Headers –</strong> instead of relying on just one value for a parameter, we can have multiple values that we can use for a single output. Here’s an example of how you could use that one:</li>
 </ul>
-<p>Remember that Power BI / Power Query is a user-oriented tool, so it has this really nice and unique User-interface that provides a rich User-eXperience.</p>
-<p>If you don’t want to learn any code, you can use the UI to accomplish almost 80% of what you want to do when it comes to Data Preparation inside of Power Query.</p>
-<p>We’ll use UI oriented method first.</p>
-<h3>Creating a Conditional Column using the Power BI / Power Query user interface</h3>
-<p>if you go to the “Add Column” menu, you’ll see the “Conditional Column” button:<a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-4.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-4.png" alt="image" width="769" height="297" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-4-xl.webp 1024w"></a></p>
-<p>When you click it, you’ll get a new window called the “Add Conditional Column” window and it looks like this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-5.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-5.png" alt="image" width="924" height="389" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-5-xl.webp 1024w"></a></p>
-<p>It’s pretty cool! but let me tell you how it works.</p>
-<p>On the top left you’ll see a “New Column name” and this is where you’ll input the name of the new column.</p>
-<p>Then we see a row that starts with “if” and that’s where I’ve entered the conditional logic, but there’s once piece missing and that’s the output!</p>
-<p>We’re only able to enter either a static value or select a column. We don’t have an option to enter a formula here, so we can’t move forward with this. What we need to do first is create that column and refer to that column once it’s in our table.</p>
-<p>Let’s just go ahead and close this window for now and go back to the Power Query Window.</p>
-<p>We can select both columns and then do a simple multiplication by going through the “Add Column” menu:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-6.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-6.png" alt="image" width="711" height="289" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-6-xl.webp 1024w"></a></p>
-<p>but there’s still one more thing that we need to do and that is round that value. So with the output of the previous operation, we select that column and then go to the “Transform” menu and do a Round from there:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-7.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-7.png" alt="image" width="1473" height="624" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-7-xl.webp 1024w"></a></p>
-<p>and with that value now in the table, we can go back to the Conditional Column and just enter it like this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-8.png"><img loading="lazy" style="display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-8.png" alt="image" width="926" height="391" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-8-xl.webp 1024w"></a></p>
-<p>After this, we can simply remove the “Multiplication” Column and that’ll give us the following result:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-9.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-9.png" alt="image" width="891" height="95" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-9-xl.webp 1024w"></a></p>
-<p>which is exactly what we’re after.</p>
-<p>One of the caveats of this whole process is that it relies on a lot of layers or steps because we’re not able to input the formula right from the “Add Conditional Column” window.</p>
-<p>What if we could do all of these 4 steps:</p>
-<ol>
-<li>Multiply the columns</li>
-<li>Round the value from that column “Multiplication” column</li>
-<li>Create a Conditional Column</li>
-<li>Remove the “Multiplication” column as its no longer needed</li>
-</ol>
-<p>in just 1 step instead…<strong>could it be possible? </strong>It sure is! Let’s find out how</p>
-<h3>Creating a Conditional Column using the Power BI / Power Query Custom Column window</h3>
-<p>This method does require you to know M code, but it could save you A LOT of time and will help you minimize your code so it’s not “bloated” and so difficult to read and understand after you’re done with it.</p>
-<p>Instead of going with the “Conditional Column” from the “Add Column” menu, we’ll go with the “Custom Column":</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-10.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-10.png" alt="image" width="389" height="174" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-10-xl.webp 1024w"></a></p>
-<p>and now, thanks to all the updates that Power Query has been getting, it’s easier to input the formula that we need directly into the Custom Column window. Just look at this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-11.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-11.png" alt="image" width="701" height="438" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-11-xl.webp 1024w"></a></p>
-<p>The formula above does the multiplication and the rounding but, <strong>what about the if statement?</strong></p>
-<p>In Power Query everything is case sensitive. In this case, the if statement should look exactly like this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-12.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-12.png" alt="image" width="642" height="401" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-12-xl.webp 1024w"></a></p>
-<blockquote>
-<p><span style="background-color: #ffff00;">if [#"Taxable?"] = "Yes" then<br>Number.Round( [Tax] * [Amount], 2)<br>else 0</span></p>
-</blockquote>
-<p>Notice how all parts of the <strong>if statement </strong>are colored in blue. In order to make a nested IF, we would use the <strong>if </strong>again after the <strong>else</strong> – again, everything is case sensitive so keep that in mind.</p>
-<p>The end result will look like this:</p>
-<p><a href="https://thepoweruser.com/wp-content/uploads/2019/05/image-13.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/515/image_thumb-13.png" alt="image" width="1024" height="226" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-xs.webp 320w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-sm.webp 480w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-md.webp 768w ,https://www.thepoweruser.com/media/posts/515/responsive/image_thumb-13-xl.webp 1024w"></a></p>
-<p>where everything was done in just 1 step.</p>
-<p>Be sure to check out the next parts in the series where I’ll go over:</p>
-<ul>
-<li>Logical Operators and nested conditionals</li>
-<li>IFERROR in Power Query</li>
-</ul>
-</div>
-</div>
-</div>
+<a href="https://thepoweruser.com/wp-content/uploads/2019/01/image-55.png"><img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/484/image_thumb-55.png" alt="image" width="412" height="79" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-55-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-55-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-55-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-55-xl.webp 1024w"></a> See how they try to tackle different scenarios. The first one is quite straightforward for when you want to use a single value for a specific Parameter, but if you need more than one, for a case where you need to invoke a function against multiple parameters like in the Parameters as Table Headers case where you want to query the same tables from 2 servers / databases with different ip addresses, then the second option would be far easier than going with the Record-like table approach.
+<h2>Referencing Values from a Parameter Table</h2>
+In his blog post, Ken provided an easy to use <strong>custom function</strong> and explained how to use it so you can extract the values from a Parameter table sourced from an Excel workbook. Since we want to go beyond that, and give you the concepts behind it so you can create your own, I’m going to reference a full blown blog post that I created a few months ago about how to Navigate through rows, columns and cells inside of Power Query / Power BI. Click in the image below to go to that blog post: <a href="https://thepoweruser.com/2018/04/09/the-navigation-step-in-power-query-and-power-bi-navigating-to-rows-columns-and-cells/" target="_blank" rel="noopener noreferrer"><img src="https://www.thepoweruser.com/media/posts/484/image_thumb-8.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-8-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-8-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-8-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-8-xl.webp 1024w"></a> This is actually a common step for the <strong>Record-like Parameter Table</strong> where you first need to reference the Parameter that you want to use as showcased by Ken in his blog post. The easiest way to reference a specific cell is to simply do a right click on the cell and select the option to Drill down or Add as New Query: <img loading="lazy" src="https://www.thepoweruser.com/media/posts/484/image_thumb-9.png" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-9-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-9-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-9-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-9-xl.webp 1024w"> That approach might be time consuming if you have multiple parameters to reference like the scenario that I mentioned before, where you have a table with all the databases that you want to connect to and the specific tables that you want to use from those databases. In that case, it’ll be much more efficient to simply use the <strong>Parameters as Table Headers </strong>approach and use a Custom Function that uses those 3 parameters so we can pass each row as the argument to the function using the <strong>Invoke Custom Function </strong>button which is the same experience to what we’ve addressed in our previous post about Custom Functions: <a href="https://thepoweruser.com/2019/02/19/parameters-and-functions-in-power-bi-power-query-custom-functions/" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/484/image_thumb-46.png" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-46-xs.webp 320w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-46-sm.webp 480w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-46-md.webp 768w ,https://www.thepoweruser.com/media/posts/484/responsive/image_thumb-46-xl.webp 1024w"></a>
+<p align="center"><em>(click on the image above to check the full blog post on Custom Functions)</em></p>
+<h2>Things to be aware of</h2>
+<img loading="lazy" src="https://www.thepoweruser.com/media/posts/484/111108i7859668E3F590085" alt="Image result for formula firewall"> Your Parameter table can be sourced from anywhere, but bear in mind that we also need to take in consideration the Privacy settings of each of your Data Sources as they might trigger something called the <strong>“Formula Firewall”</strong>, which I’ll cover in a later blog post. Note that we call these Parameter Tables, but these are pseudo Parameters as, by definition, Parameters inside Power Query / Power BI are defined within the <strong>Manage Parameters </strong>window and we also covered the difference between Arguments and Parameters, so the more technically appropriate term for these should be <strong>Arguments Table.</strong></div>
             ]]>
         </content>
     </entry>
     <entry>
-        <title>Data Source and Step Level Settings in Power BI / Power Query: aka The Gear Icons</title>
+        <title>Extracting Header and Footer Values from Documents, Files using Power BI + Using PDF Connector</title>
         <author>
             <name>Miguel Escobar</name>
         </author>
-        <link href="https://www.thepoweruser.com/data-source-and-step-level-settings-in-power-bi-power-query-aka-the-gear-icons/"/>
-        <id>https://www.thepoweruser.com/data-source-and-step-level-settings-in-power-bi-power-query-aka-the-gear-icons/</id>
-        <media:content url="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" medium="image" />
+        <link href="https://www.thepoweruser.com/extracting-header-and-footer-values-from-documents-files-using-power-bi-using-pdf-connector/"/>
+        <id>https://www.thepoweruser.com/extracting-header-and-footer-values-from-documents-files-using-power-bi-using-pdf-connector/</id>
+        <media:content url="https://www.thepoweruser.com/media/posts/453/image_thumb.png" medium="image" />
 
-        <updated>2019-05-21T05:30:00-05:00</updated>
+        <updated>2018-11-26T08:00:00-05:00</updated>
             <summary type="html">
                 <![CDATA[
-                        <img src="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" alt="" />
-                    Over a year ago I wrote a blog post in this specific&hellip;
+                        <img src="https://www.thepoweruser.com/media/posts/453/image_thumb.png" alt="" />
+                    Have you ever had a similar situation where a REALLY important value&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                    <p><img src="https://www.thepoweruser.com/media/posts/513/image_thumb-25.png" class="type:primaryImage" alt="" /></p>
-                <div class="is-core-freeform-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">Over a year ago I wrote a blog post in this specific topic. I highly recommend that you read it (<a href="https://thepoweruser.com/2018/04/16/reconfiguring-a-step-in-power-query-for-excel-and-power-bi/" target="_blank" rel="noopener noreferrer">here</a>) before you read this one. The reason why I’m writing kind of a follow up on this it’s because I recently had a really heated conversation with a very close friend of mine who I can only call as an expert on Power Query. It was a pretty heated conversation because this person was on the “<strong>dark side</strong>”, as he didn’t know of what the Data Source Settings button actually did and was using dark [M]agic to make things work. <img loading="lazy" style="border: 0px currentcolor; margin-right: auto; margin-left: auto; float: none; display: block; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-20.png" alt="image" width="162" height="188" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-20-xl.webp 1024w"> <strong>This was pretty crazy to me! </strong>I use this button / feature almost on a daily basis and I can’t stop recommending it to people who use Power BI / Power Query, so why would this person choose any other method over this? Let me show you WHY this is such a big deal and why you need to start using the gear icons more frequently.
-<h2>The situation with changing Folder Paths for the Combine Files Experience</h2>
-I recently wrote a whole 4 part series on how you can combine files and in several of those blog posts I explained how you can use the Combine Files experience to append / consolidate / combine the data within your files into just one big table. [custom_posts template="one_half_gallery" effect="none" hide="date,author,comments_link,summary,categories,tags" entry_ids="17711,17777"] Now, let’s say that you created a connection to a folder located in:
-<p align="center"><em>“D:\Sales”</em></p>
-but now you want to change the folder path to be:
-<p align="center"><em>“D:\Sales\Americas”</em></p>
-so you can only combine the data of the files within the Americas subfolder. <strong>How do you do that with Power BI / Power Query? </strong>In Power BI / Power Query, this is categorized as changing a Data Source. What we’re trying to change is a Data Source (a folder path in this case) which has an authentication method attached to it. For a local folder path, this authentication is completely implicit so you won’t get the “Authentication” window, but if you were connecting to a SharePoint / OneDrive Folder then you’d get that authentication window. Let’s look at the options that we have in order to change this data source.
-<h2>Option 1: Using the Source Step gear icon (The Dark Side)</h2>
-When you create a query to a new data source, you’ll notice that the first step will be called “Source” and it’ll have a gear icon right next to it. When you click that gear icon, you’ll get the same prompt window that you got when you initially tried to connect to your data source which in our case it’ll be the “Folder” window to browse to a new folder path: <img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-21.png" alt="image" width="1340" height="430" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-21-xl.webp 1024w"> <strong>What’s the problem with this approach?  </strong>That’s a good question! it seems like a fine approach, until you realize that you’ll need to do this for every single query that has that same data source which is just tedious, time consuming and sometimes we forget where all of our data sources are being defined (at a step level). For example, with the Combine Files experience, the folder path gets referenced in 2 places:
-<ol>
-<li><strong>The original query:</strong></li>
-</ol>
-<img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-22.png" alt="image" width="1211" height="615" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-22-xl.webp 1024w">
-<ol>
-<li><strong>The sample file query:</strong></li>
-</ol>
-<img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-23.png" alt="image" width="1211" height="615" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-23-xl.webp 1024w"> The situation here is that in some cases the consequent steps of some of those queries also rely on the names of the “Data Source” so it can get complicated when you want to change your data source as all of this will need to be done manually. <strong>There are some workarounds to make this work with a step level configuration, but they fall on what I call a MacGyver approach.</strong>
-<h2>Option 2: Using the Data Source Settings (The Right Side)</h2>
-This is the option that I usually recommend and here’s the logic behind it. I’m a pretty visual type of guy, and that’s the main reason why you see so many diagrams and illustrations created by myself on this blog, so let’s take a visual approach here. If you go to Power BI / Power Query, get to the “View” menu and select the “Query Dependencies” you’ll get a window like the following: <img loading="lazy" style="display: inline; background-image: none;" title="SNAGHTML2314279d" src="https://www.thepoweruser.com/media/posts/513/SNAGHTML2314279d_thumb.png" alt="SNAGHTML2314279d" width="1117" height="878" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/SNAGHTML2314279d_thumb-xl.webp 1024w">
-<ol>
-<li>Go to  the View tab</li>
-<li>Click on the Query Dependencies button</li>
-<li>Check the visual representation of all of your queries</li>
-</ol>
-As you can see, you get a visual representation of all of your queries and there’s only 1 data source which is denoted with a folder icon (D:\Sales). See, this is like a master record for that specific data source so you don’t need to go through each query that references that data source, but instead you go to a different button. <strong>What button? you might ask</strong> <strong>Here’s the full process that you need to take in order to change your data source:</strong> <img loading="lazy" style="border: 0px currentcolor; display: inline; background-image: none;" title="image" src="https://www.thepoweruser.com/media/posts/513/image_thumb-24.png" alt="image" width="1553" height="897" border="0" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-xs.webp 320w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-sm.webp 480w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-md.webp 768w ,https://www.thepoweruser.com/media/posts/513/responsive/image_thumb-24-xl.webp 1024w">
-<ol>
-<li>Go to Home tab</li>
-<li>Select the Data Source Settings button</li>
-<li>A new window for the Data Source settings should appear</li>
-<li>Select your data source from the list. In my case it was the “D:\Sales” folder</li>
-<li>Click the “Change Source…” button at the very bottom left side of the window</li>
-<li>A new window will appear where you can change your data source for ALL of your queries</li>
-</ol>
-and that’s it! even if you had dozens of queries that reference that same data source, you wouldn’t have to go through each and every one of them to make the changes with this option
-<h2>Conclusions</h2>
-While both approaches are very much valid, when it comes to changing a data source I highly recommend that you go through the Option #2 with the Data Source Settings button. The other gear icons, at the step level, do have their own place and that’s what I mainly talk in my previous blog post about the Step configuration. Be sure to check out that blog post <a href="https://thepoweruser.com/2018/04/16/reconfiguring-a-step-in-power-query-for-excel-and-power-bi/" target="_blank" rel="noopener noreferrer"><strong>here</strong></a>.</div>
+                    <p><img src="https://www.thepoweruser.com/media/posts/453/image_thumb.png" class="type:primaryImage" alt="" /></p>
+                <!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><strong>Have you ever had a similar situation where a REALLY important value of the file is in either a header or a footer section? </strong>Let me give you a clear example with the following file:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/SNAGHTML18603940.png"><img loading="lazy" title="SNAGHTML18603940" src="https://www.thepoweruser.com/media/posts/453/SNAGHTML18603940_thumb.png" alt="SNAGHTML18603940" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18603940_thumb-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18603940_thumb-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18603940_thumb-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18603940_thumb-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">In the image above you’ll see that we have 2 values in the header section right under the logo of my company. Now, this is a PDF file, so we’ll connect to that PDF file, get the data underneath those header values (which is basically a table) and then create a new column specifically for the value of the <strong>Sales Group. </strong>You can imagine that I have a bunch of PDF files in a folder and each of those PDF files is for a specific Sales Group, so I need to have that value as a new column.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">My Final table should look like the following:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/SNAGHTML18623d2f.png"><img loading="lazy" title="SNAGHTML18623d2f" src="https://www.thepoweruser.com/media/posts/453/SNAGHTML18623d2f_thumb.png" alt="SNAGHTML18623d2f" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18623d2f_thumb-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18623d2f_thumb-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18623d2f_thumb-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/SNAGHTML18623d2f_thumb-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:heading -->
+<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Using the new Power BI PDF file Connector (in preview)</h2>
+<!-- /wp:heading -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">A few months ago the Power BI team released a new connector which is still in preview. This connector allows you to extract data directly from a PDF file.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><strong>How do I enable it? </strong>You can download the latest version of Power BI Desktop, go to settings –&gt; Preview Features:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-1.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-1.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-1-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-1-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-1-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-1-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">You’ll need to restart your Power BI Desktop for changes to take effect, but once you do that you’ll see the PDF connector listed in the ‘Get Data’ window:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-2.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-2.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-2-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-2-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-2-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-2-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:heading {"level":3} -->
+<h3 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Connecting to our sample PDF File</h3>
+<!-- /wp:heading -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Let’s go ahead and click on that PDF connector and then you’ll get prompted to input the filepath of the file. Instead of choosing a local file, just use the following url:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:quote -->
+<blockquote class="wp-block-quote is-core-quote-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<p><a title="https://thepoweruser.com/wp-content/uploads/2018/11/Report.pdf" href="https://thepoweruser.com/wp-content/uploads/2018/11/Report.pdf">https://thepoweruser.com/wp-content/uploads/2018/11/Report.pdf</a></p>
+</blockquote>
+<!-- /wp:quote -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-3.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-3.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-3-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-3-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-3-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-3-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Hit Open and then you’ll be able to see the Navigator window with 2 elements:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:list -->
+<ul class="is-core-list-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<li>A table object</li>
+<li>A page</li>
+</ul>
+<!-- /wp:list -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-4.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-4.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-4-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-4-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-4-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-4-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">You’ll see that Power Query  (or Power BI) automatically enumerates the elements that it finds.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><span style="font-size: xx-small;"><span style="font-family: Arial;"><strong>Note:</strong> some PDF files might seem like they are properly formatted, but in reality they are just images embedded into a PDF. Images can not be interpreted by this connector.</span></span></p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:heading -->
+<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Getting the Data in a Table</h2>
+<!-- /wp:heading -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Power Query / Power BI is smart enough to distinguish when data might be formatted as a Table, so we can go ahead and connect to the first and only table listed for that file:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-5.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-5.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-5-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-5-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-5-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-5-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">hit Edit so we can go to the Power Query Editor and prepare our data.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Once inside the Power Query Editor, let’s go ahead an do:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:list -->
+<ul class="is-core-list-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<li>Remove the Column5 that has the dollar signs ($)</li>
+<li>A fill down on the SalesPerson column</li>
+</ul>
+<!-- /wp:list -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-6.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-6.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-6-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-6-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-6-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-6-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:list -->
+<ul class="is-core-list-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<li>Change the data type of the Date column to a proper Date data type</li>
+</ul>
+<!-- /wp:list -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-7.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-7.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-7-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-7-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-7-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-7-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:list -->
+<ul class="is-core-list-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<li>Remove any errors created by the previous step</li>
+</ul>
+<!-- /wp:list -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-8.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-8.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-8-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-8-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-8-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-8-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">This last one is even easier to do and to distinguish or find that in previous versions of Power Query thanks to the Column Profiler (the cool chart under the columnheader) and Column Quality (the cool legend that tells you how many are valid, error or empty in that column preview).</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Once everything is done, your table should be looking like this:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-9.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-9.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-9-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-9-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-9-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-9-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">I highly recommend that you change the name of this Query to “Data”, just so we can all be on the same page <figure class="wlEmoticon wlEmoticon-smile"><img loading="lazy"  src="https://www.thepoweruser.com/media/posts/453/wlEmoticon-smile.png" alt="Smile" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/wlEmoticon-smile-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/wlEmoticon-smile-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/wlEmoticon-smile-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/wlEmoticon-smile-xl.webp 1024w"></figure>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:heading -->
+<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Extracting Values from the Header (or Footer) of a file</h2>
+<!-- /wp:heading -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Ok – cool. We have the main data in the query “Data”, but we still need to know the “Sales Group” of that report, and we want to place that value as a new column for the “Data” Query.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"><strong>How do we do that? </strong>we connect to the page of the file.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-10.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-10.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-10-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-10-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-10-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-10-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">OK – we know where that value is, but how do we get to THAT exact “cell” or “position”?</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">We should ask ourselves a question: <strong>will this be fixed position? or can this change?</strong></p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Ok – maybe that’s more than one, but you get the idea. You’ll create a set of steps that will always yield that specific cell or “position” by, for example, filtering by the Column3 to get the cell where the value is equals to “Sales Group:”, BUT in this case we’ll say that this is a fixed position and that it’ll always be in that specific position.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">For that, all we need to do is use the magic of the Right-click to display an option called “Drill Down”:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-11.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-11.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-11-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-11-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-11-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-11-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">What “Drill Down” does is that it’ll create a new step in that query that will simply have the value from that specific cell or “position”.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">The output should look like the following:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-12.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-12.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-12-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-12-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-12-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-12-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Change the name of your query to match the one on the image above (Header) and let’s move on to the next step.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:heading -->
+<h2 class="is-core-heading-block" style="margin-top: 5px; margin-bottom: 15px; padding-top: 0px; padding-bottom: 0px;">Adding the Extracted Header Value to the Data</h2>
+<!-- /wp:heading -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Let’s go back to the “Data” query, click on the “Add Column” menu and click on the “Add a Custom Column” button. Once that pops up, go ahead and enter the following formula:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-13.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-13.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-13-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-13-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-13-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-13-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">You’re basically just creating a new column that will have the value from that other Query (which is simply a text value). The output looks like this:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image is-core-image-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a href="https://thepoweruser.com/wp-content/uploads/2018/11/image-14.png"><img loading="lazy" title="image" src="https://www.thepoweruser.com/media/posts/453/image_thumb-14.png" alt="image" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-14-xs.webp 320w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-14-sm.webp 480w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-14-md.webp 768w ,https://www.thepoweruser.com/media/posts/453/responsive/image_thumb-14-xl.webp 1024w"></a></figure>
+<!-- /wp:image -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">And that’s it!!! You just made it happen. Of course, this process could potentially happen in the same query and you can apply the same technique for values or data that could be in any place of the document – not just the header or the footer.</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Below you’ll find a video showcasing the same technique:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:core-embed/youtube {"url":"https://www.youtube.com/watch?v=tlyHQTSvxbQ","type":"video","providerNameSlug":"youtube","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio is-core-embed-youtube-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="wp-block-embed__wrapper">https://www.youtube.com/watch?v=tlyHQTSvxbQ</div>
+</figure>
+<!-- /wp:core-embed/youtube -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;">Click in the button below to download the sample file:</p>
+<!-- /wp:paragraph -->
+<p> </p>
+<!-- wp:buttons -->
+<div class="wp-block-buttons is-core-buttons-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><!-- wp:button -->
+<div class="wp-block-button is-size-default is-core-button-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a class="wp-block-button__link" href="https://thepoweruser.com/wp-content/uploads/2018/12/Extracting-Values-from-Headers.zip" target="_blank" rel="noreferrer noopener">Download PBIX File</a></div>
+<!-- /wp:button --> <!-- wp:button -->
+<div class="wp-block-button is-size-default is-core-button-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><a class="wp-block-button__link" href="https://thepoweruser.com/wp-content/uploads/2018/11/Report.pdf" target="_blank" rel="noreferrer noopener">DOWNLOAD PDF FILE</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+<p> </p>
+<!-- wp:group -->
+<div class="wp-block-group is-core-group-block" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+<div class="wp-block-group__inner-container"> </div>
+</div>
+<!-- /wp:group -->
+<p> </p>
+<!-- wp:paragraph -->
+<p class="is-core-paragraph-block has-space-small-mb" style="margin-top: 0px; margin-bottom: 20px; padding-top: 0px; padding-bottom: 0px;"> </p>
+<!-- /wp:paragraph -->
             ]]>
         </content>
     </entry>
