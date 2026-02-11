@@ -37,29 +37,39 @@
 						s.setAttribute('data-timestamp', +new Date());
 						(d.head || d.body).appendChild(s);
 					})();
-				}</script><script type="text/javascript"></script></div></div></div></div></main><div class="right-bar"><div class="right-bar__inner"><div class="sidebar"><section class="box authors"><h3 class="box__title">The Power User</h3><ul class="authors__cotainer"><li class="authors__item"><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__image"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" alt="Miguel Escobar" height="800" width="800" class="authors__img"></a><div><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__title">Miguel Escobar</a></div></li></ul></section><section class="box tags"><h3 class="box__title">Recommended Topics</h3><ul class="tags__list"><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-bi-3/" class="btn btn--gray">Power BI <sup>(14)</sup></a></li><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-query_english/" class="btn btn--gray">Power Query <sup>(10)</sup></a></li></ul></section><section class="box newsletter"><h3 class="box__title">Subscribe to the blog</h3><p class="newsletter__desc">Sign up to receive email notifications when a new post goes out</p><div class="custom-newsletter"><form id="newsletter-form" action="https://app.kit.com/forms/9069266/subscriptions" method="post" target="kit_hidden_iframe"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"> <input type="email" id="email" name="email_address" placeholder="Email Address" required aria-label="Email Address" autocomplete="email" inputmode="email"> <button type="submit">Subscribe</button></form><iframe name="kit_hidden_iframe" style="display:none"></iframe><div id="newsletter-message"></div></div><script>(() => {
-  const form = document.getElementById('newsletter-form');
-  if (!form) return;
-  
-  const button = form.querySelector('button');
-  const messageDiv = document.getElementById('newsletter-message');
+				}</script><script type="text/javascript"></script></div></div></div></div></main><div class="right-bar"><div class="right-bar__inner"><div class="sidebar"><section class="box authors"><h3 class="box__title">The Power User</h3><ul class="authors__cotainer"><li class="authors__item"><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__image"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" alt="Miguel Escobar" height="800" width="800" class="authors__img"></a><div><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__title">Miguel Escobar</a></div></li></ul></section><section class="box tags"><h3 class="box__title">Recommended Topics</h3><ul class="tags__list"><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-bi-3/" class="btn btn--gray">Power BI <sup>(14)</sup></a></li><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-query_english/" class="btn btn--gray">Power Query <sup>(10)</sup></a></li></ul></section><section class="box newsletter"><h3 class="box__title">Subscribe to the blog</h3><p class="newsletter__desc">Sign up to receive email notifications when a new post goes out</p><div class="custom-newsletter" data-kit-form><form action="https://app.kit.com/forms/9069266/subscriptions" method="post" target="kit_hidden_iframe"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"> <input type="email" name="email_address" placeholder="Email Address" required aria-label="Email Address" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false"> <button type="submit">Subscribe</button></form><iframe name="kit_hidden_iframe" style="display:none"></iframe><div class="newsletter-message" aria-live="polite"></div></div><script>(() => {
+  const root = document.querySelector('[data-kit-form]');
+  if (!root) return;
 
-  form.addEventListener('submit', () => {
-    // Honeypot check - silently ignore bot submissions
+  const form = root.querySelector('form');
+  const button = form.querySelector('button[type="submit"]');
+  const messageDiv = root.querySelector('.newsletter-message');
+
+  form.addEventListener('submit', (e) => {
+    // Stop bot submits
     const hp = form.querySelector('input[name="website"]');
     if (hp && hp.value) {
+      e.preventDefault();
       return;
     }
 
+    // If browser considers the form invalid, don’t show success UI.
+    // Let the browser show its native validation message.
+    if (!form.checkValidity()) {
+      return;
+    }
+
+    // UI feedback (we still allow the form to submit to the hidden iframe)
     button.disabled = true;
     button.textContent = 'Subscribing...';
-    messageDiv.className = '';
+    messageDiv.className = 'newsletter-message';
     messageDiv.textContent = '';
 
-    // Can't read cross-origin response, so show safe message after delay
+    // We can't read the cross-origin response, so we show a "safe" success message.
+    // If you want to be extra honest, change the text to "If everything worked..."
     setTimeout(() => {
       messageDiv.className = 'newsletter-message newsletter-success';
-      messageDiv.textContent = 'Success! Check your email to confirm your subscription.';
+      messageDiv.textContent = 'If everything worked, check your email to confirm your subscription.';
       form.reset();
       button.disabled = false;
       button.textContent = 'Subscribe';
