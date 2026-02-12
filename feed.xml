@@ -3,7 +3,7 @@
     <title>The Power User</title>
     <link href="https://www.thepoweruser.com/feed.xml" rel="self" />
     <link href="https://www.thepoweruser.com" />
-    <updated>2026-02-12T04:17:41-05:00</updated>
+    <updated>2026-02-12T04:41:44-05:00</updated>
     <author>
         <name>Miguel Escobar</name>
     </author>
@@ -114,7 +114,7 @@
 <li><a href="https://learn.microsoft.com/en-us/power-query/step-folding-indicators">https://learn.microsoft.com/en-us/power-query/step-folding-indicators</a></li>
 <li><a href="https://learn.microsoft.com/en-us/power-query/query-plan">https://learn.microsoft.com/en-us/power-query/query-plan</a></li>
 </ul>
-<h3 id="why-this-matters-3">Why this matters</h3>
+<figure class="post__image"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_xmltthxmltthxmlt.png" alt="Diagram showing how query folding could break in one side depending on how the steps are sequenced" width="2752" height="1536" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_xmltthxmltthxmlt-xs.webp 320w ,https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_xmltthxmltthxmlt-sm.webp 480w ,https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_xmltthxmltthxmlt-md.webp 768w ,https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_xmltthxmltthxmlt-xl.webp 1024w"></figure><h3 id="why-this-matters-3">Why this matters</h3>
 <p>Query folding is the difference between:</p><ul>
 <li><strong>The source system does the heavy lifting</strong> (fast, scalable)  </li>
 <li><strong>Power Query does the heavy lifting</strong> (slow, expensive)</li>
