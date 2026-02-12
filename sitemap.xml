@@ -49,6 +49,50 @@
 </image:image>
 </url>
 <url>
+<loc>https://www.thepoweruser.com/dataflow-gen2-5-tips-to-go-faster-and-spend-less/</loc>
+<lastmod>2026-02-12T04:17:41-05:00</lastmod>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_ueuqe9ueuqe9ueuq.png</image:loc>
+<image:title><![CDATA[Dataflow Gen2: 5 Tips to Go Faster and Spend Less]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_u57tj2u57tj2u57t.png</image:loc>
+<image:title><![CDATA[Visual to describe a faster development cycle against a sample of your data]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/enable-only-in-preview-option.png</image:loc>
+<image:title><![CDATA[Screenshot of the Power Query editor in Dataflow Gen2 with the contextual menu of a step showing the enable only in previews option.]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_u57tj2u57tj2u57t-2.png</image:loc>
+<image:title><![CDATA[Diagram showing more common ELT patterns![Image description]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/enable-staging.png</image:loc>
+<image:title><![CDATA[Screenshot showing how to enable staging in Dataflow Gen2.]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_u57tj2u57tj2u57t-2-3.png</image:loc>
+<image:title><![CDATA[Visual on how parameters can help you work more through modules]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/territory-parameter.png</image:loc>
+<image:title><![CDATA[Screenshot of a parameter with the name Territory]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/step-folding-indicators-sample.png</image:loc>
+<image:title><![CDATA[Screenshot of the query folding indicators for the sample query inside the Applied steps pane.]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_u57tj2u57tj2u57t-4.png</image:loc>
+<image:title><![CDATA[Visual showing how some simple failsafe can prevent errors at refresh time]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/578/sample-workbook-in-power-query-sample-error.png</image:loc>
+<image:title><![CDATA[Screenshot of the selected error, with an error message at the bottom of the dialog.]]></image:title>
+</image:image>
+</url>
+<url>
 <loc>https://www.thepoweruser.com/extracting-header-and-footer-values-from-documents-files-using-power-bi-using-pdf-connector/</loc>
 <lastmod>2026-02-11T01:34:00-05:00</lastmod>
 <image:image>
