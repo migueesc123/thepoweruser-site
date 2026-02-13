@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Make your Dataflow Gen2 development 10x Faster - The Power User</title><meta name="description" content="Let’s talk about one of the biggest silent killers of Dataflow Gen2 productivity:Developing against live data.It sounds “correct”… but it’s also the reason your Dataflow takes 10x longer to build than it should."><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://www.thepoweruser.com/this-one-trick-makes-dataflow-gen2-development-10x-faster/"><link rel="alternate" type="application/atom+xml" href="https://www.thepoweruser.com/feed.xml" title="The Power User - RSS"><link rel="alternate" type="application/json" href="https://www.thepoweruser.com/feed.json" title="The Power User - JSON"><meta property="og:title" content="Make your Dataflow Gen2 development 10x Faster"><meta property="og:image" content="https://www.thepoweruser.com/media/posts/579/Gemini_Generated_Image_bm4nqubm4nqubm4n.png"><meta property="og:image:width" content="2752"><meta property="og:image:height" content="1536"><meta property="og:site_name" content="The Power User"><meta property="og:description" content="Let’s talk about one of the biggest silent killers of Dataflow Gen2 productivity:Developing against live data.It sounds “correct”… but it’s also the reason your Dataflow takes 10x longer to build than it should."><meta property="og:url" content="https://www.thepoweruser.com/this-one-trick-makes-dataflow-gen2-development-10x-faster/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://www.thepoweruser.com/media/website/favicon.svg" type="image/x-icon"><link rel="preload" href="https://www.thepoweruser.com/assets/dynamic/fonts/outfit/outfit.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="https://www.thepoweruser.com/assets/css/style.css?v=ff34eb7e878e18427e56e410f62312ca"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.thepoweruser.com/this-one-trick-makes-dataflow-gen2-development-10x-faster/"},"headline":"Make your Dataflow Gen2 development 10x Faster","datePublished":"2026-02-13T01:00-05:00","dateModified":"2026-02-13T01:06-05:00","image":{"@type":"ImageObject","url":"https://www.thepoweruser.com/media/posts/579/Gemini_Generated_Image_bm4nqubm4nqubm4n.png","height":1536,"width":2752},"description":"Let’s talk about one of the biggest silent killers of Dataflow Gen2 productivity:Developing against live data.It sounds “correct”… but it’s also the reason your Dataflow takes 10x longer to build than it should.","author":{"@type":"Person","name":"Miguel Escobar","url":"https://www.thepoweruser.com/authors/miguel-escobar/"},"publisher":{"@type":"Organization","name":"Miguel Escobar","logo":{"@type":"ImageObject","url":"https://www.thepoweruser.com/media/website/thepoweruser.png","height":495,"width":350}}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"><style>.fi{fill:none;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}</style></head><body class="post-template"><div class="container"><div class="left-bar"><div class="left-bar__inner"><header class="header"><a class="logo" href="https://www.thepoweruser.com/"><img src="https://www.thepoweruser.com/media/website/thepoweruser.png" alt="The Power User" width="350" height="495"></a><nav class="navbar"><button class="navbar__toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle__box"><span class="navbar__toggle__inner">Menu</span></span></button><ul class="navbar__menu"><li><a class="tltp" href="https://www.thepoweruser.com/" target="_self" aria-label="Home"><svg class="fi fi-home" width="24px" height="24px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><use href="https://www.thepoweruser.com/media/plugins/featherIcons/feather-sprite.svg#home"/></svg> <span>Home</span></a></li><li><a class="tltp" href="https://www.thepoweruser.com/authors/miguel-escobar/" target="_self" aria-label="About me"><svg class="fi fi-user" width="24px" height="24px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><use href="https://www.thepoweruser.com/media/plugins/featherIcons/feather-sprite.svg#user"/></svg> <span>About me</span></a></li></ul><a class="tltp" href="#" id="search-trigger" aria-label="Search"><svg class="fi fi-search" width="24px" height="24px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span>Search</span></a></nav></header></div></div><main class="main post"><article class="content"><figure class="content__featured-image content__featured-image--attop"><img src="https://www.thepoweruser.com/media/posts/579/Gemini_Generated_Image_bm4nqubm4nqubm4n.png" srcset="https://www.thepoweruser.com/media/posts/579/responsive/Gemini_Generated_Image_bm4nqubm4nqubm4n-xs.webp 320w, https://www.thepoweruser.com/media/posts/579/responsive/Gemini_Generated_Image_bm4nqubm4nqubm4n-sm.webp 480w, https://www.thepoweruser.com/media/posts/579/responsive/Gemini_Generated_Image_bm4nqubm4nqubm4n-md.webp 768w, https://www.thepoweruser.com/media/posts/579/responsive/Gemini_Generated_Image_bm4nqubm4nqubm4n-xl.webp 1024w" sizes="(min-width: 1460px) 938px, (min-width: 1200px) calc(75.83vw - 154px), (min-width: 1120px) 938px, (min-width: 900px) calc(55vw + 333px), 100vw" loading="eager" height="1536" width="2752" alt="" aria-describedby="image-caption"></figure><div class="content__meta content__meta--attop"><div class="content__meta--attop__inner"><div class="content__maintag"><svg width="20" height="20" aria-hidden="true" focusable="false"><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#tag"/></svg> Published in <a href="https://www.thepoweruser.com/tags/dataflow-gen2/" class="metadata__maintag">Dataflow Gen2</a></div><div id="image-caption" class="content__featured-image__caption"><svg width="20" height="20" aria-hidden="true" focusable="false"><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#image"/></svg> Google Gemini</div></div></div><div class="main__inner"><div class="content__meta"><div class="content__author"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" height="800" width="800" alt="Miguel Escobar" class="content__author__avatar"><div><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="content__author__name">Miguel Escobar</a></div></div><div class="content__date"><time datetime="2026-02-13T01:00">Feb 13, 2026</time></div></div><header class="content__header"><h1 class="content__title">Make your Dataflow Gen2 development 10x Faster</h1></header><div class="content__entry"><p>Let’s talk about one of the biggest silent killers of Dataflow Gen2 productivity:</p><p><strong>Developing against live data.</strong></p><p>It sounds “correct”… but it’s also the reason your Dataflow takes 10x longer to build than it should.</p><p>And yes — it makes you waste time for absolutely no reason, while also hammering your source system during every preview.</p><h2 id="scenario">Scenario</h2><p>You’re building a Dataflow Gen2 that ingests <strong>Sales Orders</strong> from a data source.</p><p>Maybe it’s your company’s ERP system, maybe it’s an Azure SQL database, maybe it’s Snowflake or maybe its just an internal REST API that its always really slow.</p><p>It doesn’t matter.</p><p><strong>The point is</strong>: the time that it takes to get the data is far too long, and your transformations aren’t trivial.</p><p>You need to:</p><ul><li>Filter only valid sales orders</li><li>Normalize customer IDs</li><li>Expand product details</li><li>Add calculated columns</li><li>Create clean output tables for downstream models</li></ul><p>So far so good.</p><p>This is exactly what Dataflow Gen2 is supposed to do.</p><h2 id="the-issue-with-using-live-data-that-is-slow">The Issue with using Live Data that is slow</h2><p>Here’s what happens when you build your Dataflow Gen2 against the real source that is known to be slow:</p><ul><li>every step you add triggers query evaluation</li><li>previews take longer and longer</li><li>small changes become painful</li></ul><p>Even worse…<strong>live sources are unpredictable</strong>. One day the preview takes 15 seconds. The next day it takes 3 minutes because:</p><ul><li>the SQL server is busy</li><li>the gateway is slow</li><li>the network is congested</li><li>the query plan changed</li><li>someone is running ETL jobs in the background</li></ul><p>So your development loop becomes:</p><blockquote><p>make a change → wait → stare at spinner → forget what you were doing → repeat</p></blockquote><p>This is not engineering.</p><p>This is suffering.</p><h2 id="how-mock-data-can-be-generated">How Mock Data Can Be Generated</h2><p>Instead of pulling live data while developing, you can generate a small dataset that mimics your schema.</p><p>This gives you fast previews, predictable results, and an actually usable development experience.</p><h3 id="step-1--create-a-parameter">Step 1 — Create a parameter</h3><p>Create a parameter called:</p><ul><li><code>UseMockData</code></li></ul><p>Set the allowed values:</p><ul><li><code>true</code></li><li><code>false</code></li></ul><p>Default it to:</p><ul><li><code>true</code></li></ul><figure class="post__image"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.20.27-AM.png" alt="Screenshot of the newly created UseMockData parameter" width="1342" height="1372" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.20.27-AM-xs.webp 320w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.20.27-AM-sm.webp 480w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.20.27-AM-md.webp 768w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.20.27-AM-xl.webp 1024w"></figure><p>So when you open the Dataflow to edit, it runs fast.</p><h3 id="step-2--build-a-mock-dataset-you-have-a-few-ways-to-do-it">Step 2 — Build a mock dataset (you have a few ways to do it)</h3><p>At this point, you need a query that represents your mock version of the dataset.</p><p>In other words, you want something like <code>Mock_SalesOrders</code> that looks like production (same columns and types), but contains only a handful of rows so it loads instantly.</p><p>There are a few ways to build this query, depending on what workflow you prefer.</p><h4 id="option-1--use-enter-data-fastest">Option 1 — Use Enter Data (fastest)</h4><p>If you already have sample rows from production, the simplest approach is to use Enter Data and paste a few records directly into the Dataflow.</p><p>This is the quickest way to get a working mock dataset, and in many cases it’s all you need.!</p><figure class="post__image"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.27.16-AM.png" alt="Screenshot of the Enter data approach" width="1896" height="1430" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.27.16-AM-xs.webp 320w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.27.16-AM-sm.webp 480w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.27.16-AM-md.webp 768w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.27.16-AM-xl.webp 1024w"></figure><h5 id="option-2--build-the-table-using-pure-m-most-portable">Option 2 — Build the table using pure M (most portable)</h5><p>If you want something clean, reproducible, and easy to move across environments, you can define the mock dataset entirely in M code.</p><p>Example:</p><pre><code class="language-powerquery">let
+    MockSalesOrders =
+        #table(
+            type table [
+                OrderID = Int64.Type,
+                CustomerID = text,
+                OrderDate = datetime,
+                ProductID = text,
+                Quantity = Int64.Type,
+                UnitPrice = number
+            ],
+            {
+                {1001, &quot;CUST-001&quot;, #datetime(2025, 1, 1, 10, 0, 0), &quot;PROD-A&quot;, 2, 19.99},
+                {1002, &quot;CUST-002&quot;, #datetime(2025, 1, 2, 14, 30, 0), &quot;PROD-B&quot;, 1, 199.00},
+                {1003, &quot;CUST-003&quot;, #datetime(2025, 1, 3, 9, 15, 0), &quot;PROD-C&quot;, 5, 9.50},
+                {1004, &quot;CUST-001&quot;, #datetime(2025, 1, 5, 11, 45, 0), &quot;PROD-A&quot;, 1, 19.99}
+            }
+        )
+in
+    MockSalesOrders
+</code></pre><p>This creates a small in-memory table that behaves like production:</p><ul><li>same schema</li><li>same data types</li><li>same general structure</li></ul><p>But it loads instantly.</p><h4 id="option-3--use-a-csvtxt-file-stored-somewhere-fast-best-for-teams">Option 3 — Use a CSV/TXT file stored somewhere fast (best for teams)</h4><p>If you want something closer to a “real dev dataset”, store a sample extract as a CSV or TXT file.</p><p>Put it somewhere secure and reliable (OneLake, SharePoint, Blob Storage, etc.) and connect the Dataflow to that file.</p><p>This gives you mock data that:</p><ul><li>is easy to share across a team</li><li>can be updated without touching the Dataflow logic</li><li>behaves more like a real source system</li></ul><p>This is usually the best option when multiple developers are building the same Dataflow.</p><p>No matter which option you choose, the goal is the same: <strong>create a lightweight dataset that matches production schema, without depending on production performance.</strong></p><h3 id="step-3--create-the-real-query">Step 3 — Create the real query</h3><p>Create another query where you connect to your actual live data source and call it:</p><ul><li><code>Real_SalesOrders</code></li></ul><p>Example for Azure SQL:</p><pre><code class="language-powerquery">let
+    Source = Sql.Database(&quot;myserver.database.windows.net&quot;, &quot;SalesDB&quot;),
+    SalesOrders = Source{[Schema=&quot;dbo&quot;, Item=&quot;SalesOrders&quot;]}[Data]
+in
+    SalesOrders
+</code></pre><p>This is your real source.</p><h3 id="step-4--switch-between-real-and-mock-using-the-parameter">Step 4 — Switch between real and mock using the parameter</h3><p>Now create the actual working query called:</p><ul><li><code>SalesOrders</code></li></ul><pre><code class="language-powerquery">let
+    Source =
+        if UseMockData
+        then Mock_SalesOrders
+        else Real_SalesOrders
+in
+    Source
+</code></pre><p>That’s it.</p><p>From this point forward, all transformations happen on top of <code>SalesOrders</code>.</p><p>So your logic stays identical. Only the source changes.</p><figure class="post__image"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.33.50-AM-3.png" alt="Screenshot of Dataflow loading mockup data" width="2870" height="1494" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.33.50-AM-3-xs.webp 320w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.33.50-AM-3-sm.webp 480w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.33.50-AM-3-md.webp 768w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.33.50-AM-3-xl.webp 1024w"></figure><h2 id="how-this-impacts-development-time">How This Impacts Development Time</h2><p>This is where things get stupidly better. When you’re developing against mock data:</p><ul><li>previews load instantly (<em>check the load time in the previous screenshot of 0.48 seconds</em>)</li><li>transformations apply instantly</li><li>errors show instantly</li><li>debugging becomes predictable</li></ul><p>Instead of waiting minutes per step, you get a workflow that feels like:</p><blockquote><p>edit → preview → tweak → preview → done</p></blockquote><p>Which is how Power Query should feel.</p><h3 id="typical-impact">Typical impact</h3><p>If your live source takes ~2 minutes to preview and you make 40 changes…</p><p>That’s <strong>80 minutes of waiting</strong>.</p><p>Not working. Waiting.</p><p>Mock data eliminates that.</p><h2 id="impact-on-publishing-time">Impact on Publishing Time</h2><p>This is where mock data becomes way more powerful than people realize.</p><p>Because in Dataflow Gen2, <strong>saving/publishing isn’t just saving a file</strong>.</p><p>When you hit <strong>Save</strong>, Dataflow Gen2 runs validations behind the scenes.</p><p>And those validations typically require evaluating your queries against the configured source.</p><p>So if your dataflow is pointing at a live SQL database, API, or gateway-backed source, you often end up with:</p><ul><li>slow save times</li><li>validation delays</li><li>random failures depending on source availability</li><li>publishing stuck because the source is slow or unreachable</li></ul><p>And the worst part is:</p><ul><li>You’re not even refreshing the dataflow yet.</li><li>You’re just trying to save your work.</li></ul><p>Now compare that to using mock data.</p><p>If your <code>UseMockData</code> parameter is set to <code>true</code>, then the Dataflow is validating against a tiny in-memory dataset.</p><p>Which means:</p><ul><li>save is fast</li><li>validation is fast</li><li>publishing is predictable</li><li>you don’t need the live system online just to publish changes</li></ul><p>So your workflow becomes:</p><blockquote><p>Develop with mock data → Save instantly → Publish cleanly → Deploy confidently</p></blockquote><p>Then, when it’s time to run the real refresh, you invoke the dataflow with:</p><ul><li><code>UseMockData = false</code></li></ul><p>At that point, the Dataflow runs against the real source <strong>during refresh</strong>, which is when you actually want to pay the cost of hitting the live system.</p><p>This is the key distinction:</p><p><strong>Mock data makes publishing fast.<br>Live data is only used when refresh actually runs.</strong></p><p>And that’s exactly how it should be.</p><blockquote><p><strong>Note</strong>: this also assumes that you trust your live source and that your MockUp dataset has high-fidelity to what you’ll get from the source.</p></blockquote><h2 id="impact-on-refresh-time-when-invoking-parameters">Impact on Refresh Time When Invoking Parameters</h2><p>This is the part where it all comes together. Because parameters aren’t only a development trick. They’re a deployment and automation tool.</p><p>Once your Dataflow is published, you can invoke it with parameter values depending on the scenario by using <a href="https://learn.microsoft.com/en-us/fabric/data-factory/dataflow-parameters">Public Parameters</a>.</p><figure class="post__image"><img loading="lazy" src="https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.54.20-AM.png" alt="Screenshot of Dataflow activity in pipeline where you pass false to the UseMockData parameter" width="1582" height="1378" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.54.20-AM-xs.webp 320w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.54.20-AM-sm.webp 480w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.54.20-AM-md.webp 768w, https://www.thepoweruser.com/media/posts/579/responsive/Screenshot-2026-02-13-at-12.54.20-AM-xl.webp 1024w"></figure><h3 id="example-scenarios">Example scenarios</h3><p><strong>CI/CD validation run</strong></p><ul><li><code>UseMockData = true</code></li><li>refresh completes quickly</li><li>transformation logic is validated</li><li>output schema is confirmed</li></ul><p><strong>Production refresh run</strong></p><ul><li><code>UseMockData = false</code></li><li>refresh hits the real source</li><li>full dataset loads</li><li>downstream models get real data</li></ul><p>This gives you a clean separation:</p><ul><li>mock for development + validation</li><li>live for production execution</li></ul><h3 id="why-this-matters">Why this matters</h3><p>Because the fastest refresh is the refresh you don’t run.</p><p>If you can validate logic with mock data, you avoid running expensive refreshes repeatedly just to test a minor transformation change.</p><p>That saves:</p><ul><li>time</li><li>retries</li><li>capacity usage</li><li>and everyone’s sanity</li></ul><h2 id="summary">Summary</h2><p>Mock data + parameters is one of the highest ROI patterns you can use in Dataflow Gen2.</p><p>It gives you:</p><p>✅ faster development<br>✅ easier debugging<br>✅ faster publishing<br>✅ safer deployments<br>✅ better CI/CD automation<br>✅ less dependency on slow or unstable sources</p><p>And the best part?</p><p>It’s literally a boolean parameter and a small mock table.</p><p>Once you try it, you won’t go back.</p><p><strong>There is another route that you can take</strong> which is using <a href="https://learn.microsoft.com/en-us/fabric/data-factory/dataflow-gen2-preview-only-step">Preview Only Steps</a>, but the best ROI for such scenario is when you work against a data source that supports query folding and the step that you want to make as a preview only can be folded back to the source. Definitely give it a try if you have a chance!</p></div><footer class="content__footer"><div class="content__last-updated">This article was updated on <time datetime="2026-02-13T01:06">Feb 13, 2026</time></div><div class="content__share"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thepoweruser.com%2Fthis-one-trick-makes-dataflow-gen2-development-10x-faster%2F" class="js-share facebook tltp tltp--top" aria-label="Facebook" rel="nofollow noopener noreferrer"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#facebook"/></svg> <span>Facebook</span> </a><a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.thepoweruser.com%2Fthis-one-trick-makes-dataflow-gen2-development-10x-faster%2F&amp;via=escobarmiguel90&amp;text=Make%20your%20Dataflow%20Gen2%20development%2010x%20Faster" class="js-share twitter tltp tltp--top" aria-label="Twitter" rel="nofollow noopener noreferrer"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#twitter"/></svg> <span>Twitter</span> </a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.thepoweruser.com%2Fthis-one-trick-makes-dataflow-gen2-development-10x-faster%2F" class="js-share linkedin tltp tltp--top" aria-label="Share with LinkedIn" rel="nofollow noopener noreferrer"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#linkedin"/></svg> <span>LinkedIn</span> </a><a href="https://api.whatsapp.com/send?text=Make%20your%20Dataflow%20Gen2%20development%2010x%20Faster https%3A%2F%2Fwww.thepoweruser.com%2Fthis-one-trick-makes-dataflow-gen2-development-10x-faster%2F" class="js-share whatsapp tltp tltp--top" title="Share with LinkedIn" rel="nofollow noopener noreferrer"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#whatsapp"/></svg> <span>WhatsApp</span></a></div></footer></div></article><div class="content__section post__related"><div class="main__inner"><h3 class="content__section__title">Related post</h3><div class="post__related__wrap"><article class="c-card"><div class="c-card__meta"><div class="c-card__author"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" height="800" width="800" alt="Miguel Escobar"> <a href="https://www.thepoweruser.com/authors/miguel-escobar/">Miguel Escobar</a></div><time datetime="2026-02-12T03:30">Feb 12, 2026 </time><a href="https://www.thepoweruser.com/tags/dataflow-gen2/" class="c-card-tag">Dataflow Gen2</a></div><a href="https://www.thepoweruser.com/dataflow-gen2-5-tips-to-go-faster-and-spend-less/" class="c-card__image"><img src="https://www.thepoweruser.com/media/posts/578/Gemini_Generated_Image_ueuqe9ueuqe9ueuq.png" srcset="https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_ueuqe9ueuqe9ueuq-xs.webp 320w, https://www.thepoweruser.com/media/posts/578/responsive/Gemini_Generated_Image_ueuqe9ueuqe9ueuq-sm.webp 480w" sizes="(min-width: 700px) 200px, (min-width: 480px) 160px, calc(100vw - 50px)" loading="lazy" height="1536" width="2752" alt="Dataflow Gen2: 5 Tips to Go Faster and Spend Less"></a><header class="c-card__header"><h2 class="c-card__title"><a href="https://www.thepoweruser.com/dataflow-gen2-5-tips-to-go-faster-and-spend-less/">Dataflow Gen2: 5 Tips to Go Faster and Spend Less</a></h2><p>If your Dataflow Gen2 takes forever to build and even longer to refresh, you’re paying twice: your time and your capacity. These 5 tips speed up authoring, cut refresh time, and lower the bill—without rewriting everything.</p></header></article><article class="c-card"><div class="c-card__meta"><div class="c-card__author"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" height="800" width="800" alt="Miguel Escobar"> <a href="https://www.thepoweruser.com/authors/miguel-escobar/">Miguel Escobar</a></div><time datetime="2019-12-19T03:54">Dec 19, 2019 </time><a href="https://www.thepoweruser.com/tags/power-bi-3/" class="c-card-tag">Power BI</a></div><a href="https://www.thepoweruser.com/split-segment-partition-section-your-table-in-power-bi-power-query/" class="c-card__image"><img src="https://www.thepoweruser.com/media/posts/554/Split-your-Table.png" srcset="https://www.thepoweruser.com/media/posts/554/responsive/Split-your-Table-xs.webp 320w, https://www.thepoweruser.com/media/posts/554/responsive/Split-your-Table-sm.webp 480w" sizes="(min-width: 700px) 200px, (min-width: 480px) 160px, calc(100vw - 50px)" loading="lazy" height="1440" width="2560" alt=""></a><header class="c-card__header"><h2 class="c-card__title"><a href="https://www.thepoweruser.com/split-segment-partition-section-your-table-in-power-bi-power-query/">Split / Segment / Partition / Section your table in Power BI / Power Query</a></h2><p>The following is a pretty common scenario that I've seen with flat&hellip;</p></header></article></div></div></div><div class="content__section content__comments"><div class="main__inner"><div class="comments"><div class="comments-wrapper"><h2>Comments</h2><div id="disqus_thread"></div><noscript>Please enable JS to use the comments form.</noscript><script type="text/javascript">var disqus_config = function () {
+							this.page.url = 'https://www.thepoweruser.com/this-one-trick-makes-dataflow-gen2-development-10x-faster/';
+							this.page.identifier = '579'; 
+							this.language = 'en_GB';
+						};
+						
+						
+				var disqus_element_to_check = document.getElementById('disqus_thread');
+
+				if ('IntersectionObserver' in window) {
+					var iObserver = new IntersectionObserver(
+						(entries, observer) => {
+							entries.forEach(entry => {
+								if (entry.intersectionRatio >= 0.1) {
+									(function () {
+										var d = document, s = d.createElement('script');
+										s.src = 'https://'+('thepoweruser-1').trim()+'.disqus.com/embed.js';
+										s.setAttribute('data-timestamp', +new Date());
+										(d.head || d.body).appendChild(s);
+									})();
+									observer.unobserve(entry.target);
+								}
+							});
+						},
+						{
+							threshold: [0, 0.2, 0.5, 1]
+						}
+					);
+
+					iObserver.observe(disqus_element_to_check);
+				} else {
+					(function () {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://'+('thepoweruser-1').trim()+'.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				}</script><script type="text/javascript"></script></div></div></div></div></main><div class="right-bar"><div class="right-bar__inner"><div class="sidebar"><section class="box authors"><h3 class="box__title">The Power User</h3><ul class="authors__cotainer"><li class="authors__item"><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__image"><img src="https://www.thepoweruser.com/media/website/1713246451401.jpeg" loading="lazy" alt="Miguel Escobar" height="800" width="800" class="authors__img"></a><div><a href="https://www.thepoweruser.com/authors/miguel-escobar/" class="authors__title">Miguel Escobar</a></div></li></ul></section><section class="box tags"><h3 class="box__title">Recommended Topics</h3><ul class="tags__list"><li class="tags__item"><a href="https://www.thepoweruser.com/tags/dataflow-gen2/" class="btn btn--gray">Dataflow Gen2 <sup>(2)</sup></a></li><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-bi-3/" class="btn btn--gray">Power BI <sup>(14)</sup></a></li><li class="tags__item"><a href="https://www.thepoweruser.com/tags/power-query_english/" class="btn btn--gray">Power Query <sup>(10)</sup></a></li></ul></section><section class="box newsletter"><h3 class="box__title">Subscribe to the blog</h3><p class="newsletter__desc">Sign up to receive email notifications when a new post goes out</p><div class="custom-newsletter" data-kit-form><form action="https://app.kit.com/forms/9069266/subscriptions" method="post" target="kit_hidden_iframe"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"> <input type="email" name="email_address" placeholder="Email Address" required aria-label="Email Address" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false"> <button type="submit">Subscribe</button></form><iframe name="kit_hidden_iframe" style="display:none"></iframe><div class="newsletter-message" aria-live="polite"></div></div><script>(() => {
+  const root = document.querySelector('[data-kit-form]');
+  if (!root) return;
+
+  const form = root.querySelector('form');
+  const button = form.querySelector('button[type="submit"]');
+  const messageDiv = root.querySelector('.newsletter-message');
+
+  form.addEventListener('submit', (e) => {
+    // Stop bot submits
+    const hp = form.querySelector('input[name="website"]');
+    if (hp && hp.value) {
+      e.preventDefault();
+      return;
+    }
+
+    // If browser considers the form invalid, don’t show success UI.
+    // Let the browser show its native validation message.
+    if (!form.checkValidity()) {
+      return;
+    }
+
+    // UI feedback (we still allow the form to submit to the hidden iframe)
+    button.disabled = true;
+    button.textContent = 'Subscribing...';
+    messageDiv.className = 'newsletter-message';
+    messageDiv.textContent = '';
+
+    // We can't read the cross-origin response, so we show a "safe" success message.
+    // If you want to be extra honest, change the text to "If everything worked..."
+    setTimeout(() => {
+      messageDiv.className = 'newsletter-message newsletter-success';
+      messageDiv.textContent = 'If everything worked, check your email to confirm your subscription.';
+      form.reset();
+      button.disabled = false;
+      button.textContent = 'Subscribe';
+    }, 900);
+  });
+})();</script></section><div class="box follow"><a href="https://x.com/escobarmiguel90" class="tltp tltp--top" aria-label="Twitter"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#twitter"/></svg> <span>Twitter</span> </a><a href="https://www.linkedin.com/in/escobarmiguel90/" class="tltp tltp--top" aria-label="LinkedIn"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#linkedin"/></svg> <span>LinkedIn</span> </a><a href="https://www.youtube.com/thepoweruser" class="tltp tltp--top" aria-label="Youtube"><svg><use xlink:href="https://www.thepoweruser.com/assets/svg/svg-map.svg#youtube"/></svg> <span>Youtube</span></a></div><div class="box copyright">Opinions are my own. This blog does not represent anyone other than me.</div></div></div></div></div><script defer="defer" src="https://www.thepoweruser.com/assets/js/scripts.min.js?v=b2d91bcadbf5db401b76eb5bb3092eb7"></script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  // Initialize DocSearch
+  docsearch({
+    container: '#docsearch',
+    appId: 'I0Z4J3YX36',
+    indexName: 'The Power User',
+    apiKey: 'cde285ea5df00b817df1b3be88c2ae8f'
+  });
+  
+  // Connect search trigger to DocSearch (button is already in HTML)
+  const searchTrigger = document.getElementById('search-trigger');
+  if (searchTrigger) {
+    searchTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const docSearchButton = document.querySelector('.DocSearch-Button');
+      if (docSearchButton) {
+        docSearchButton.click();
+      }
+    });
+  }
+});</script><div id="docsearch"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"><script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+    // Find all images in post content ONLY
+    const contentImages = document.querySelectorAll('.post__entry img, article .entry-content img, .content img');
+    
+    contentImages.forEach(function(img) {
+        // Skip if image is in excluded areas
+        const isAuthorImage = img.closest('.author, .author-info, .post-author, .profile, .avatar, .author-avatar');
+        const isThumbnail = img.closest('.post-thumbnail, .featured-image, .post-preview');
+        const isLogo = img.closest('.logo, .site-logo, header');
+        const isSidebar = img.closest('.sidebar, aside');
+        
+        // Skip excluded images
+        if (isAuthorImage || isThumbnail || isLogo || isSidebar) {
+            return;
+        }
+        
+        // Skip if already wrapped in a link
+        if (img.parentElement.tagName === 'A') {
+            img.parentElement.classList.add('glightbox');
+            return;
+        }
+        
+        // Create wrapper link
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.className = 'glightbox';
+        link.setAttribute('data-gallery', 'post-images');
+        
+        // Add caption if image has alt text
+        if (img.alt) {
+            link.setAttribute('data-title', img.alt);
+        }
+        
+        // Wrap the image
+        img.parentNode.insertBefore(link, img);
+        link.appendChild(img);
+    });
+    
+    // Initialize GLightbox
+    const lightbox = GLightbox({
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true,
+        openEffect: 'fade',
+        closeEffect: 'fade'
+    });
+});</script><button id="scrollToTop" aria-label="Scroll to top"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg></button><style>#scrollToTop {
+    position: fixed;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    background: custom; /* Uses your theme's accent color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+#scrollToTop.show { opacity: 1; visibility: visible; }
+#scrollToTop:hover { 
+    filter: brightness(0.85); /* Darkens on hover */
+    transform: translateY(-3px); 
+}
+
+@media (max-width: 768px) {
+    #scrollToTop { right: 20px !important; }
+}</style><script>document.addEventListener('DOMContentLoaded', function() {
+    const scrollButton = document.getElementById('scrollToTop');
+    const contentArea = document.querySelector('.main, .content, main, article');
+    
+    function positionButton() {
+        if (contentArea && window.innerWidth > 768) {
+            const rect = contentArea.getBoundingClientRect();
+            const buttonOffset = window.innerWidth - rect.right + 30;
+            scrollButton.style.right = buttonOffset + 'px';
+        }
+    }
+    
+    positionButton();
+    window.addEventListener('resize', positionButton);
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollButton.classList.add('show');
+        } else {
+            scrollButton.classList.remove('show');
+        }
+    });
+    
+    scrollButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});</script></body></html>

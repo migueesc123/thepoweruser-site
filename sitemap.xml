@@ -683,4 +683,28 @@
 <image:title><![CDATA[image]]></image:title>
 </image:image>
 </url>
+<url>
+<loc>https://www.thepoweruser.com/this-one-trick-makes-dataflow-gen2-development-10x-faster/</loc>
+<lastmod>2026-02-13T01:06:58-05:00</lastmod>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/579/Gemini_Generated_Image_bm4nqubm4nqubm4n.png</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.20.27-AM.png</image:loc>
+<image:title><![CDATA[Screenshot of the newly created UseMockData parameter]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.27.16-AM.png</image:loc>
+<image:title><![CDATA[Screenshot of the Enter data approach]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.33.50-AM-3.png</image:loc>
+<image:title><![CDATA[Screenshot of Dataflow loading mockup data]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://www.thepoweruser.com/media/posts/579/Screenshot-2026-02-13-at-12.54.20-AM.png</image:loc>
+<image:title><![CDATA[Screenshot of Dataflow activity in pipeline where you pass false to the UseMockData parameter]]></image:title>
+</image:image>
+</url>
 </urlset>
